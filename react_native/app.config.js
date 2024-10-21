@@ -1,4 +1,15 @@
+import * as dotenv from 'dotenv'
+dotenv.config()
+
 module.exports = ({ config }) => {
+  const secrets = {
+    fbAppId: process.env.FB_APP_ID,
+    fbClientToken: process.env.FB_CLIENT_TOKEN,
+    easProjectId: process.env.EAS_PROJECT_ID
+  }
+
+  console.log(`secrets are: ${JSON.stringify(secrets)}`)
+
   return {
     expo: {
       name: config.name,
@@ -32,8 +43,8 @@ module.exports = ({ config }) => {
         [
           'react-native-fbsdk-next',
           {
-            appID: config.fbAppId,
-            clientToken: config.fbClientToken,
+            appID: secrets.fbAppId,
+            clientToken: secrets.fbClientToken,
             displayName: config.name,
             scheme: `fb${config.fbAppId}`
           }
@@ -42,7 +53,7 @@ module.exports = ({ config }) => {
       extra: {
         environment: 'local',
         eas: {
-          projectId: config.easProjectId
+          projectId: secrets.easProjectId
         }
       }
     }

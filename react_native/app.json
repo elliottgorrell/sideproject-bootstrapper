@@ -1,8 +1,5 @@
 {
-  "name": null,
+  "name": "Bootstrapper",
   "version": "0.0.1",
-  "bundleIdentifier": null,
-  "fbAppId": null,
-  "fbClientToken": null,
-  "easProjectId": null
+  "bundleIdentifier": "com.bootstrapper.elliott"
 }
