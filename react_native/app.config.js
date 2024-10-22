@@ -1,14 +1,18 @@
 import * as dotenv from 'dotenv'
 dotenv.config()
 
+function throwIfNotSet (varName) {
+  const envVar = process.env[varName] ?? (() => { throw new Error(`Env Var ${varName} is not set`) })()
+
+  return envVar
+}
+
 module.exports = ({ config }) => {
   const secrets = {
-    fbAppId: process.env.FB_APP_ID,
-    fbClientToken: process.env.FB_CLIENT_TOKEN,
-    easProjectId: process.env.EAS_PROJECT_ID
+    fbAppId: throwIfNotSet('FB_APP_ID'),
+    fbClientToken: throwIfNotSet('FB_CLIENT_TOKEN'),
+    easProjectId: throwIfNotSet('EAS_PROJECT_ID')
   }
-
-  console.log(`secrets are: ${JSON.stringify(secrets)}`)
 
   return {
     expo: {

@@ -1,14 +1,4 @@
-variable "billing_account" {
-  type     = string
-  nullable = false
-}
-
 variable "project_name" {
-  type     = string
-  nullable = false
-}
-
-variable "project_id" {
   type     = string
   nullable = false
 }
@@ -18,24 +8,8 @@ variable "bundle_id" {
   nullable = false
 }
 
-variable "fb_client_id" {
-  type     = string
-  nullable = false
-}
-
-variable "fb_client_secret" {
-  type     = string
-  nullable = false
-}
-
-variable "google_client_id" {
-  type     = string
-  nullable = false
-}
-
-variable "google_client_secret" {
-  type     = string
-  nullable = false
+locals {
+  secrets = { for tuple in regexall("(.*?)=(.*)", file(".env")) : tuple[0] => sensitive(tuple[1]) }
 }
 
 # Terraform configuration to set up providers by version.
@@ -64,11 +38,11 @@ provider "google-beta" {
 resource "google_project" "default" {
   provider   = google-beta.no_user_project_override
   name       = var.project_name
-  project_id = var.project_id
+  project_id = local.secrets.project_id
 
   # Associates the project with a Cloud Billing account
   # (required for Firebase Authentication with GCIP).
-  billing_account = var.billing_account
+  billing_account = local.secrets.billing_account
 
   # Required for the project to display in a list of Firebase projects.
   labels = {
@@ -137,23 +111,8 @@ resource "google_identity_platform_default_supported_idp_config" "facebook" {
 
   enabled       = true
   idp_id        = "facebook.com"
-  client_id     = var.fb_client_id
-  client_secret = var.fb_client_secret
-
-  depends_on = [
-    google_identity_platform_config.default,
-  ]
-}
-
-# Enable Google SSO
-resource "google_identity_platform_default_supported_idp_config" "google" {
-  provider = google-beta
-  project  = google_project.default.project_id
-
-  enabled       = true
-  idp_id        = "google.com"
-  client_id     = var.google_client_id
-  client_secret = var.google_client_secret
+  client_id     = local.secrets.fb_client_id
+  client_secret = local.secrets.fb_client_secret
 
   depends_on = [
     google_identity_platform_config.default,
