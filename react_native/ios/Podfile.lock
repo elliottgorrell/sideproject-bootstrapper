@@ -1288,7 +1288,7 @@ PODS:
   - Firebase/Storage (11.3.0):
     - Firebase/CoreOnly
     - FirebaseStorage (~> 11.3.0)
-  - FirebaseAppCheckInterop (11.4.0)
+  - FirebaseAppCheckInterop (11.3.0)
   - FirebaseAuth (11.3.0):
     - FirebaseAppCheckInterop (~> 11.0)
     - FirebaseAuthInterop (~> 11.0)
@@ -1298,14 +1298,14 @@ PODS:
     - GoogleUtilities/Environment (~> 8.0)
     - GTMSessionFetcher/Core (~> 3.4)
     - RecaptchaInterop (~> 100.0)
-  - FirebaseAuthInterop (11.4.0)
+  - FirebaseAuthInterop (11.3.0)
   - FirebaseCore (11.3.0):
     - FirebaseCoreInternal (~> 11.0)
     - GoogleUtilities/Environment (~> 8.0)
     - GoogleUtilities/Logger (~> 8.0)
-  - FirebaseCoreExtension (11.4.0):
+  - FirebaseCoreExtension (11.3.0):
     - FirebaseCore (~> 11.0)
-  - FirebaseCoreInternal (11.4.0):
+  - FirebaseCoreInternal (11.3.0):
     - "GoogleUtilities/NSData+zlib (~> 8.0)"
   - FirebaseFirestore (11.3.0):
     - FirebaseCore (~> 11.0)
@@ -1327,7 +1327,7 @@ PODS:
     - gRPC-Core (~> 1.65.0)
     - leveldb-library (~> 1.22)
     - nanopb (~> 3.30910.0)
-  - FirebaseSharedSwift (11.4.0)
+  - FirebaseSharedSwift (11.3.0)
   - FirebaseStorage (11.3.0):
     - FirebaseAppCheckInterop (~> 11.0)
     - FirebaseAuthInterop (~> 11.0)
@@ -2862,15 +2862,15 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 572cca0bc6c90067ef197187697cb3b584310c52
   FBSDKShareKit: d9269157b4e9620f0bc1a461c5ead35a65cede9a
   Firebase: 5c575140761e22324806f401e38c483d58db2dec
-  FirebaseAppCheckInterop: 1b9643ae2f1ee214488caa2f8e32b7bc2f0f3735
+  FirebaseAppCheckInterop: 7789a8adfb09e905ce02a76540b94b059029ea81
   FirebaseAuth: c7b82c8f3942c22629145c3f2972c33d1dc3ee6c
-  FirebaseAuthInterop: 9ac948965ac13ec9d8a080f39490ddb2bda30520
+  FirebaseAuthInterop: c453b7ba7c49b88b2f519bb8d2e29edf7ada4a2a
   FirebaseCore: 8542de610f35f86196ba26cdb2544565a5157c8e
-  FirebaseCoreExtension: 4445e4cd877e0790c4af33bedca61eaef27b7513
-  FirebaseCoreInternal: 5c2b016f06a96fbf20d9b443459f80427a827d7b
+  FirebaseCoreExtension: 30bb063476ef66cd46925243d64ad8b2c8ac3264
+  FirebaseCoreInternal: ac26d09a70c730e497936430af4e60fb0c68ec4e
   FirebaseFirestore: e83d088457c90adb2abff42e5c0aaa592151e5ac
   FirebaseFirestoreInternal: 6492b7efdab5085ccd674e53591d5ebf5065d7f3
-  FirebaseSharedSwift: 505dae2d05969dbf6d43749a642bb1bf230f0252
+  FirebaseSharedSwift: d39c2ad64a11a8d936ce25a42b00df47078bb59c
   FirebaseStorage: d011ded57cc2c5904bbba947f269db506a788ea0
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: c5d68082e772fa1c511173d6b30a9de2c05a69a2
