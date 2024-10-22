@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "672792377038",
+    "project_id": "sideproject-bootstrapper-55672",
+    "storage_bucket": "sideproject-bootstrapper-55672.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:672792377038:android:d67487dbd7ceccbb09c29f",
+        "android_client_info": {
+          "package_name": "com.bootstrapper.elliott"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "672792377038-mb0e3aa1b8eh623ihlvpo23hs7bvn7o0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAma3vVAwrQ7jkkoKAk7rfMUIOpNQyWd3w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "672792377038-mb0e3aa1b8eh623ihlvpo23hs7bvn7o0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "672792377038-tisiq0pahlet48lpjsjprv6j49u9oqc2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bootstrapper.elliott"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

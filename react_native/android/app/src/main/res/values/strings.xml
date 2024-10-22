@@ -1,0 +1,8 @@
+<resources>
+  <string name="app_name">Bootstrapper</string>
+  <string name="expo_splash_screen_resize_mode" translatable="false">contain</string>
+  <string name="expo_splash_screen_status_bar_translucent" translatable="false">false</string>
+  <string name="facebook_app_id">1562502727897221</string>
+  <string name="facebook_client_token">d05c5648250f63f635063e7e154c3915</string>
+  <string name="fb_login_protocol_scheme">fbundefined</string>
+</resources>
