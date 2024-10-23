@@ -7,14 +7,12 @@
     "clean": "npx expo prebuild --clean",
     "android": "npx expo run:android",
     "ios": "npx expo run:ios",
-    "web": "npx expo start --web",
     "ts:check": "npx tsc",
     "es:lint": "npx eslint",
     "lint": "npx eslint . && npx tsc"
   },
   "dependencies": {
     "@eva-design/eva": "^2.2.0",
-    "@expo/webpack-config": "~19.0.1",
     "@react-native-firebase/app": "^21.2.0",
     "@react-native-firebase/auth": "^21.2.0",
     "@react-native-firebase/firestore": "^21.2.0",
