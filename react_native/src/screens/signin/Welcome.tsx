@@ -1,7 +1,8 @@
 import React from 'react'
-import { StyleSheet, SafeAreaView, View, Pressable } from 'react-native'
+import { StyleSheet, SafeAreaView, View, Pressable, Button, Text } from 'react-native'
 import type { StackScreenProps } from '@react-navigation/stack'
-import { Button, Text } from '@ui-kitten/components'
+import { Button as ButtonKiteen, Text as TextKitten } from '@ui-kitten/components'
+import {Button as NewButton} from '../../components/button'
 import type { AuthStackParamList } from '../../navigation/authStack'
 import { Facebook, Email, Google } from '../../utils/icons'
 import auth, { type FirebaseAuthTypes } from '@react-native-firebase/auth'
@@ -21,22 +22,41 @@ const WelcomeScreen: React.FC<StackScreenProps<AuthStackParamList, 'Welcome'>> =
       </View>
 
       <View style={styles.buttonsContainer}>
-        <Text style={styles.text} category='h2'>Get Started...</Text>
-        <Button size='large' style={styles.button} accessoryLeft={Email}
-          onPress={() => { navigation.navigate('SignUpEmail') }}
-        >EMAIL</Button>
-        <Button size='large' style={styles.button} accessoryLeft={Facebook}
-          onPress={() => {
-            onFacebookButtonPress().then((userCredential) => { console.log(`Signed in with Facebook for ${userCredential.user.displayName}!`) })
-              .catch((err) => { console.error(err) })
-          }}
-        >FACEBOOK</Button>
-        <Button size='large' style={styles.button} accessoryLeft={Google}
-          onPress={() => {
-            onGoogleButtonPress().then((userCredential) => { console.log(`Signed in with Google for ${userCredential.user.displayName}!`) })
-              .catch((err) => { console.error(err) })
-          }}
-        >GOOGLE</Button>
+        <TextKitten style={styles.text} category='h2'>Get Started...</TextKitten>
+        <NewButton
+        text="EMAIL"
+        style={styles.button}
+        icon={{
+          name: 'envelope',
+          type: 'FontAwesome5'
+        }}
+        onPress={() => { navigation.navigate('SignUpEmail') }}
+        />
+                <NewButton
+        text="FACEBOOK"
+        style={styles.button}
+        icon={{
+          name: 'facebook',
+          type: 'FontAwesome5'
+        }}
+        onPress={() => {
+          onFacebookButtonPress().then((userCredential) => { console.log(`Signed in with Facebook for ${userCredential.user.displayName}!`) })
+            .catch((err) => { console.error(err) })
+        }}
+        />
+                <NewButton
+        text="GOOGLE"
+        style={styles.button}
+        icon={{
+          name: 'google',
+          type: 'FontAwesome5'
+        }}
+        onPress={() => {
+          onGoogleButtonPress().then((userCredential) => { console.log(`Signed in with Google for ${userCredential.user.displayName}!`) })
+            .catch((err) => { console.error(err) })
+        }}
+        />
+
       </View>
 
       <View>
