@@ -7,7 +7,8 @@ export default [
   {
     ignores: [
       "**/metro.config.js",
-      "**/.eslintrc.js",
+      "app.config.js",
+      "babel.config.js",
       "android/**/*",
       "ios/**/*",
       ".expo/**/*",
