@@ -1,7 +1,7 @@
 import React from "react";
-import { StyleSheet, SafeAreaView, View } from "react-native";
+import { StyleSheet, SafeAreaView, View, Text } from "react-native";
 import type { StackScreenProps } from "@react-navigation/stack";
-import { Button, Text } from "@ui-kitten/components";
+import { Button } from "../../components/button";
 import type { OnboardingStackParamList } from "../../navigation/onboardingStack";
 import Svg, { Path, G, Rect } from "react-native-svg";
 
@@ -77,19 +77,15 @@ const WelcomeScreen: React.FC<
           marginVertical: 24,
         }}
       >
-        <Text style={styles.text} category="h2">
-          Welcome
-        </Text>
+        <Text style={styles.text}>Welcome</Text>
 
         <View style={styles.whiteBox}>
-          <Text style={styles.subHeading} category="h6">
-            Welcome to Onboarding
-          </Text>
+          <Text style={styles.subHeading}>Welcome to Onboarding</Text>
         </View>
       </View>
 
       <View style={styles.buttonsContainer}>
-        <Button size="large" style={styles.button} onPress={completeStage}>
+        <Button style={styles.button} onPress={completeStage}>
           Continue
         </Button>
       </View>

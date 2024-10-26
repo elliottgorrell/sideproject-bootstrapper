@@ -1,11 +1,9 @@
 import React from "react";
-import { StyleSheet, View, SafeAreaView, Pressable } from "react-native";
-// import Icon from 'react-native-vector-icons/FontAwesome'
-// import { Input, Button } from 'react-native-elements'
-import { Button, Text, Input } from "@ui-kitten/components";
+import { View, SafeAreaView, Pressable, Text } from "react-native";
+import { Button, TextInput } from "../../components";
 import type { StackScreenProps } from "@react-navigation/stack";
 import type { AuthStackParamList } from "../../navigation/authStack";
-
+import tw from "../../lib/tailwind";
 import auth from "@react-native-firebase/auth";
 
 const SignInScreenEmail: React.FC<
@@ -39,103 +37,50 @@ const SignInScreenEmail: React.FC<
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View>
-        {/* need to fixt his later, this is used now for justify content: space between */}
-      </View>
-
-      <View style={styles.inputContainer}>
-        <Text style={styles.heading} category="h2">
-          Login
-        </Text>
-        <Text style={styles.text} category="label">
+    <SafeAreaView style={tw`w-4/5 flex-1 self-center`}>
+      <View style={tw`flex-2 justify-end gap-3`}>
+        <Text style={tw`text-3xl font-extrabold self-center`}>Login</Text>
+        <Text style={tw`text-sm  font-extrabold text-gray-500 self-center`}>
           Please sign in to continue
         </Text>
-
         {!(value.error === "") && (
-          <View style={styles.error}>
-            <Text>{value.error}</Text>
-          </View>
+          <Text
+            style={tw`bg-red-100 border border-red-400 text-red-700 px-4 py-3`}
+          >
+            {value.error}
+          </Text>
         )}
-
-        <Input
+        <TextInput
           placeholder="Email"
-          style={styles.control}
           value={value.email}
           onChangeText={(text) => {
             setValue({ ...value, email: text });
           }}
         />
-
-        <Input
+        <TextInput
           placeholder="Password"
-          style={styles.control}
           value={value.password}
           onChangeText={(text) => {
             setValue({ ...value, password: text });
           }}
           secureTextEntry={true}
         />
-        <Button style={styles.control} onPress={SignIn}>
-          Sign In
-        </Button>
+        <Button onPress={SignIn}>Sign In</Button>
       </View>
 
-      <Pressable
-        style={styles.loginContainer}
-        onPress={() => {
-          navigation.navigate("Welcome");
-        }}
-      >
-        <Text>{"Don't have an account?"}</Text>
-        <Text style={styles.buttonLogin}>Sign Up here</Text>
-      </Pressable>
+      <View style={tw`flex-1 justify-end self-center`}>
+        <Pressable
+          style={tw`flex-row gap-2`}
+          onPress={() => {
+            navigation.navigate("Welcome");
+          }}
+        >
+          <Text>{"Don't have an account?"}</Text>
+          <Text style={tw`font-bold`}>Sign Up here</Text>
+        </Pressable>
+      </View>
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "fff",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-
-  inputContainer: {
-    width: "80%",
-  },
-
-  heading: {
-    marginBottom: 5,
-    alignSelf: "center",
-  },
-
-  text: {
-    marginBottom: 20,
-    alignSelf: "center",
-    color: "grey",
-  },
-
-  loginContainer: {
-    flexDirection: "row",
-  },
-
-  buttonLogin: {
-    fontWeight: "bold",
-    marginLeft: 5,
-  },
-
-  control: {
-    marginTop: 10,
-  },
-
-  error: {
-    marginTop: 10,
-    padding: 10,
-    color: "#fff",
-    backgroundColor: "#D54826FF",
-  },
-});
 
 export default SignInScreenEmail;

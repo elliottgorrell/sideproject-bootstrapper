@@ -1,15 +1,15 @@
 import React from "react";
-import { StyleSheet, SafeAreaView, View, Pressable } from "react-native";
+import { StyleSheet, SafeAreaView, View, Pressable, Text } from "react-native";
 import type { StackScreenProps } from "@react-navigation/stack";
-import { Button, Text } from "@ui-kitten/components";
+import { Button } from "../../components/button";
 import type { AuthStackParamList } from "../../navigation/authStack";
-import { Facebook, Email, Google } from "../../utils/icons";
 import auth, { type FirebaseAuthTypes } from "@react-native-firebase/auth";
 import { LoginManager, AccessToken } from "react-native-fbsdk-next";
 import {
   GoogleSignin,
   isSuccessResponse,
 } from "@react-native-google-signin/google-signin";
+import tw from "../../lib/tailwind";
 
 GoogleSignin.configure({
   webClientId: "",
@@ -20,28 +20,28 @@ const WelcomeScreen: React.FC<
 > = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
-      <View>
-        {/* need to fixt his later, this is used now for justify content: space between */}
-      </View>
-
       <View style={styles.buttonsContainer}>
-        <Text style={styles.text} category="h2">
+        <Text style={tw`text-3xl font-extrabold self-center`}>
           Get Started...
         </Text>
         <Button
-          size="large"
+          text="EMAIL"
           style={styles.button}
-          accessoryLeft={Email}
+          icon={{
+            name: "envelope",
+            type: "FontAwesome5",
+          }}
           onPress={() => {
             navigation.navigate("SignUpEmail");
           }}
-        >
-          EMAIL
-        </Button>
+        />
         <Button
-          size="large"
+          text="FACEBOOK"
           style={styles.button}
-          accessoryLeft={Facebook}
+          icon={{
+            name: "facebook",
+            type: "FontAwesome5",
+          }}
           onPress={() => {
             onFacebookButtonPress()
               .then((userCredential) => {
@@ -53,13 +53,14 @@ const WelcomeScreen: React.FC<
                 console.error(err);
               });
           }}
-        >
-          FACEBOOK
-        </Button>
+        />
         <Button
-          size="large"
+          text="GOOGLE"
           style={styles.button}
-          accessoryLeft={Google}
+          icon={{
+            name: "google",
+            type: "FontAwesome5",
+          }}
           onPress={() => {
             onGoogleButtonPress()
               .then((userCredential) => {
@@ -71,9 +72,7 @@ const WelcomeScreen: React.FC<
                 console.error(err);
               });
           }}
-        >
-          GOOGLE
-        </Button>
+        />
       </View>
 
       <View>
@@ -161,6 +160,7 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     width: "80%",
     justifyContent: "center",
+    flexGrow: 2,
   },
 
   textLogin: {

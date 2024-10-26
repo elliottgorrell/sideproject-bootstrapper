@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { StyleSheet, SafeAreaView, View } from "react-native";
 import type { StackScreenProps } from "@react-navigation/stack";
-import { Button } from "@ui-kitten/components";
+import { Button } from "../../components";
 import type { OnboardingStackParamList } from "../../navigation/onboardingStack";
 import { CurrentUserContext } from "../../context";
 import { OnboardingStage } from "../../types/user";
@@ -67,7 +67,7 @@ const CompletionScreen: React.FC<
         />
       </View>
       <View style={styles.buttonsContainer}>
-        <Button size="large" style={styles.button} onPress={completeStage}>
+        <Button style={styles.button} onPress={completeStage}>
           Complete
         </Button>
       </View>
