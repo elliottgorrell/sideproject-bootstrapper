@@ -1,49 +1,52 @@
-import { type Dispatch, type SetStateAction } from 'react'
-import firestore from '@react-native-firebase/firestore'
-import { OnboardingStage, type User } from '../types/user'
+import { type Dispatch, type SetStateAction } from "react";
+import firestore from "@react-native-firebase/firestore";
+import { OnboardingStage, type User } from "../types/user";
 
-const collectionName = 'users'
+const collectionName = "users";
 
 const defaultUser = {
-  onboardingStage: OnboardingStage.Welcome
-}
+  onboardingStage: OnboardingStage.Welcome,
+};
 
-export async function getUser (uid: string): Promise<User | null> {
-  console.debug(`fetching user from firestore with uid: ${uid}`)
-  const userDocument = await firestore().collection(collectionName).doc(uid).get()
+export async function getUser(uid: string): Promise<User | null> {
+  console.debug(`fetching user from firestore with uid: ${uid}`);
+  const userDocument = await firestore()
+    .collection(collectionName)
+    .doc(uid)
+    .get();
 
   if (userDocument.exists) {
-    const user = userDocument.data() as User
-    user.uid = uid
-    return user
+    const user = userDocument.data() as User;
+    user.uid = uid;
+    return user;
   } else {
-    return null
+    return null;
   }
 }
 
-export async function getOrCreateUser (uid: string): Promise<User> {
-  let user = await getUser(uid)
+export async function getOrCreateUser(uid: string): Promise<User> {
+  let user = await getUser(uid);
 
   if (user === null) {
-    console.debug('User does not exist. Creating...')
-    await createUser(uid)
-    user = await getUser(uid)
+    console.debug("User does not exist. Creating...");
+    await createUser(uid);
+    user = await getUser(uid);
 
     if (user === null) {
-      throw new Error('User was not created. This should never happen')
+      throw new Error("User was not created. This should never happen");
     }
   }
 
-  return user
+  return user;
 }
 
-export async function createUser (uid: string): Promise<void> {
-  const currUser = await getUser(uid)
+export async function createUser(uid: string): Promise<void> {
+  const currUser = await getUser(uid);
 
   if (currUser === null) {
-    await firestore().collection(collectionName).doc(uid).set(defaultUser)
+    await firestore().collection(collectionName).doc(uid).set(defaultUser);
   } else {
-    throw new Error('User already exists')
+    throw new Error("User already exists");
   }
 }
 
@@ -54,7 +57,10 @@ export async function createUser (uid: string): Promise<void> {
  * @param user
  * @param setUser
  */
-export async function updateUser (user: User, setUser: Dispatch<SetStateAction<(User)>>): Promise<void> {
-  await firestore().collection(collectionName).doc(user.uid).update(user)
-  setUser(user)
+export async function updateUser(
+  user: User,
+  setUser: Dispatch<SetStateAction<User>>,
+): Promise<void> {
+  await firestore().collection(collectionName).doc(user.uid).update(user);
+  setUser(user);
 }

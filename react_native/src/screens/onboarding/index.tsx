@@ -1,6 +1,4 @@
-import WelcomeScreen from './OnboardingWelcomeScreen'
-import CompletionScreen from './CompletionScreen'
+import WelcomeScreen from "./OnboardingWelcomeScreen";
+import CompletionScreen from "./CompletionScreen";
 
-export {
-  WelcomeScreen, CompletionScreen
-}
+export { WelcomeScreen, CompletionScreen };

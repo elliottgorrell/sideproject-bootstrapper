@@ -1,38 +1,44 @@
-import react from 'eslint-plugin-react'
-import globals from 'globals'
-import love from 'eslint-config-love'
+import react from "eslint-plugin-react";
+import globals from "globals";
+import love from "eslint-config-love";
 import eslintConfigPrettier from "eslint-config-prettier";
 
 export default [
-    {
-        ignores: ["**/metro.config.js", "**/.eslintrc.js", "android/**/*", "ios/**/*", ".expo/**/*"],
+  {
+    ignores: [
+      "**/metro.config.js",
+      "**/.eslintrc.js",
+      "android/**/*",
+      "ios/**/*",
+      ".expo/**/*",
+    ],
+  },
+  {
+    plugins: {
+      react,
     },
-    {
-        plugins: {
-            react,
-        },
 
-        languageOptions: {
-            parserOptions: {
-                ecmaFeatures: {
-                    jsx: true,
-                },
-            },
-            globals: {
-                ...globals.browser,
-            },
-            ecmaVersion: "latest",
-            sourceType: "module",
+    languageOptions: {
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
         },
-
-        settings: {
-            react: {
-                version: "detect",
-            },
-        },
-
-        rules: {},
+      },
+      globals: {
+        ...globals.browser,
+      },
+      ecmaVersion: "latest",
+      sourceType: "module",
     },
-    love,
-    eslintConfigPrettier,
+
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
+
+    rules: {},
+  },
+  love,
+  eslintConfigPrettier,
 ];

@@ -1,23 +1,23 @@
-import React from 'react'
-import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
-import { PRIMARY_COLOR, DARK_GRAY, BLACK, WHITE } from '../assets/styles'
-import { TabBarIcon } from '../components'
-import { Home, Secondary, Profile } from '../screens/main'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { PRIMARY_COLOR, DARK_GRAY, BLACK, WHITE } from "../assets/styles";
+import { TabBarIcon } from "../components";
+import { Home, Secondary, Profile } from "../screens/main";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-const Stack = createStackNavigator()
-const Tab = createMaterialTopTabNavigator()
+const Stack = createStackNavigator();
+const Tab = createMaterialTopTabNavigator();
 
-export default function MainStack (): React.JSX.Element {
-  const insets = useSafeAreaInsets()
+export default function MainStack(): React.JSX.Element {
+  const insets = useSafeAreaInsets();
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name='Tab'
+          name="Tab"
           options={{ headerShown: false, animationEnabled: false }}
         >
           {() => (
@@ -27,7 +27,7 @@ export default function MainStack (): React.JSX.Element {
                 tabBarInactiveTintColor: DARK_GRAY,
                 tabBarActiveTintColor: PRIMARY_COLOR,
                 tabBarIndicatorStyle: {
-                  backgroundColor: 'transparent'
+                  backgroundColor: "transparent",
                 },
                 tabBarStyle: {
                   backgroundColor: WHITE,
@@ -39,51 +39,42 @@ export default function MainStack (): React.JSX.Element {
                   shadowOffset: { height: 0, width: 0 },
                   paddingTop: insets.top,
                   paddingLeft: insets.left,
-                  paddingRight: insets.right
+                  paddingRight: insets.right,
                 },
                 tabBarIconStyle: {
                   minHeight: 40,
-                  minWidth: 40
+                  minWidth: 40,
                 },
-                tabBarShowLabel: false
-              }}>
-
+                tabBarShowLabel: false,
+              }}
+            >
               <Tab.Screen
-                name='Explore'
+                name="Explore"
                 component={Home}
                 options={{
                   tabBarIcon: ({ focused }) => (
-                    <TabBarIcon
-                      focused={focused}
-                      iconName='albums-outline'
-                    />
-                  )
+                    <TabBarIcon focused={focused} iconName="albums-outline" />
+                  ),
                 }}
               />
 
               <Tab.Screen
-                name='Secondary'
+                name="Secondary"
                 component={Secondary}
                 options={{
                   tabBarIcon: ({ focused }) => (
-                    <TabBarIcon
-                      focused={focused}
-                      iconName='chatbubble'
-                    />
-                  )
+                    <TabBarIcon focused={focused} iconName="chatbubble" />
+                  ),
                 }}
               />
 
               <Tab.Screen
-                name='Profile'
+                name="Profile"
                 component={Profile}
                 options={{
                   tabBarIcon: ({ focused }) => (
-                    <TabBarIcon
-                      focused={focused}
-                      iconName='person'
-                    />
-                  )
+                    <TabBarIcon focused={focused} iconName="person" />
+                  ),
                 }}
               />
             </Tab.Navigator>
@@ -91,5 +82,5 @@ export default function MainStack (): React.JSX.Element {
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
-  )
+  );
 }

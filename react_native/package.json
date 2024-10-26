@@ -9,7 +9,8 @@
     "ios": "npx expo run:ios",
     "ts:check": "npx tsc",
     "es:lint": "npx eslint",
-    "prettier": "npx prettier --check",
+    "prettier": "npx prettier . --check",
+    "prettier:fix": "npx prettier . --write",
     "lint": "npx eslint . && npx prettier . --check && npx tsc"
   },
   "dependencies": {

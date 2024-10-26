@@ -1,29 +1,39 @@
-import React, { useContext } from 'react'
-import { StyleSheet, SafeAreaView, View } from 'react-native'
-import type { StackScreenProps } from '@react-navigation/stack'
-import { Button } from '@ui-kitten/components'
-import type { OnboardingStackParamList } from '../../navigation/onboardingStack'
-import { CurrentUserContext } from '../../context'
-import { OnboardingStage } from '../../types/user'
-import { updateUser } from '../../db/user'
-import Svg, { Path, G, Rect } from 'react-native-svg'
-import LottieView from 'lottie-react-native'
-import SuccessAnimation from '../.././assets/animations/Success.json'
+import React, { useContext } from "react";
+import { StyleSheet, SafeAreaView, View } from "react-native";
+import type { StackScreenProps } from "@react-navigation/stack";
+import { Button } from "@ui-kitten/components";
+import type { OnboardingStackParamList } from "../../navigation/onboardingStack";
+import { CurrentUserContext } from "../../context";
+import { OnboardingStage } from "../../types/user";
+import { updateUser } from "../../db/user";
+import Svg, { Path, G, Rect } from "react-native-svg";
+import LottieView from "lottie-react-native";
+import SuccessAnimation from "../.././assets/animations/Success.json";
 
-const CompletionScreen: React.FC<StackScreenProps<OnboardingStackParamList, 'Completion'>> = ({ navigation }) => {
-  const { user, setUser } = useContext(CurrentUserContext)
+const CompletionScreen: React.FC<
+  StackScreenProps<OnboardingStackParamList, "Completion">
+> = ({ navigation }) => {
+  const { user, setUser } = useContext(CurrentUserContext);
 
   const completeStage = (): void => {
     updateUser({ ...user, onboardingStage: OnboardingStage.Finished }, setUser)
-      .then(() => { console.debug('user marked as completed onboarding') })
-      .catch(e => { console.error(e) })
-  }
+      .then(() => {
+        console.debug("user marked as completed onboarding");
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
 
   return (
     <SafeAreaView style={styles.container}>
-
       <View style={styles.svgContainer}>
-        <Svg width="429.88" height="859.76" viewBox="0 0 429.88 859.76" preserveAspectRatio="none">
+        <Svg
+          width="429.88"
+          height="859.76"
+          viewBox="0 0 429.88 859.76"
+          preserveAspectRatio="none"
+        >
           <Rect x="0" y="0" width="429.88" height="859.76" fill="#ffffff" />
           <G rotation={199} origin="214.94, 429.88">
             <Path
@@ -55,78 +65,78 @@ const CompletionScreen: React.FC<StackScreenProps<OnboardingStackParamList, 'Com
           loop={false}
           style={styles.animation}
         />
-
       </View>
       <View style={styles.buttonsContainer}>
-        <Button size='large' style={styles.button} onPress={completeStage} >Complete</Button>
+        <Button size="large" style={styles.button} onPress={completeStage}>
+          Complete
+        </Button>
       </View>
-    </SafeAreaView >
-  )
-}
+    </SafeAreaView>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   animationContainer: {
-    height: '85%',
-    alignItems: 'center',
-    justifyContent: 'center'
+    height: "85%",
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   animation: {
     width: 200,
-    height: 400
+    height: 400,
   },
 
   button: {
-    marginTop: 20
+    marginTop: 20,
   },
 
   text: {
     marginTop: 20,
-    alignSelf: 'center',
-    color: 'black',
+    alignSelf: "center",
+    color: "black",
     fontSize: 20,
-    fontWeight: 'bold'
+    fontWeight: "bold",
   },
 
   buttonsContainer: {
-    width: '80%',
-    justifyContent: 'center'
+    width: "80%",
+    justifyContent: "center",
   },
 
   progressContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
     paddingVertical: 20,
-    zIndex: 1
+    zIndex: 1,
   },
   progressStep: {
     width: 10,
     height: 10,
     borderRadius: 5,
-    backgroundColor: '#e0e0e0',
-    marginHorizontal: 5
+    backgroundColor: "#e0e0e0",
+    marginHorizontal: 5,
   },
   activeStep: {
-    backgroundColor: '#3C1053'
+    backgroundColor: "#3C1053",
   },
   inactiveStep: {
-    backgroundColor: '#e0e0e0'
+    backgroundColor: "#e0e0e0",
   },
 
   svgContainer: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     right: 0,
-    bottom: 0
-  }
+    bottom: 0,
+  },
+});
 
-})
-
-export default CompletionScreen
+export default CompletionScreen;

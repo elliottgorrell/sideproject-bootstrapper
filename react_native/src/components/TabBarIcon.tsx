@@ -1,19 +1,17 @@
-import React from 'react'
-import Icon from './Icon'
-import { DARK_GRAY, PRIMARY_COLOR } from '../assets/styles'
-import { type Ionicons } from '@expo/vector-icons'
+import React from "react";
+import Icon from "./Icon";
+import { DARK_GRAY, PRIMARY_COLOR } from "../assets/styles";
+import { type Ionicons } from "@expo/vector-icons";
 
 export interface TabBarIconT {
-  focused: boolean
-  iconName: keyof typeof Ionicons.glyphMap
+  focused: boolean;
+  iconName: keyof typeof Ionicons.glyphMap;
 }
 
 const TabBarIcon = ({ focused, iconName }: TabBarIconT): React.JSX.Element => {
-  const iconFocused = focused ? PRIMARY_COLOR : DARK_GRAY
+  const iconFocused = focused ? PRIMARY_COLOR : DARK_GRAY;
 
-  return (
-    <Icon name={iconName} size={32} color={iconFocused} />
-  )
-}
+  return <Icon name={iconName} size={32} color={iconFocused} />;
+};
 
-export default TabBarIcon
+export default TabBarIcon;
