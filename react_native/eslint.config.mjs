@@ -1,6 +1,7 @@
 import react from 'eslint-plugin-react'
 import globals from 'globals'
 import love from 'eslint-config-love'
+import eslintConfigPrettier from "eslint-config-prettier";
 
 export default [
     {
@@ -32,7 +33,6 @@ export default [
 
         rules: {},
     },
-    {
-        ...love,
-    }
+    love,
+    eslintConfigPrettier,
 ];

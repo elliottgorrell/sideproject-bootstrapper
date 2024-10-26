@@ -9,7 +9,8 @@
     "ios": "npx expo run:ios",
     "ts:check": "npx tsc",
     "es:lint": "npx eslint",
-    "lint": "npx eslint . && npx tsc"
+    "prettier": "npx prettier --check",
+    "lint": "npx eslint . && npx prettier . --check && npx tsc"
   },
   "dependencies": {
     "@eva-design/eva": "^2.2.0",
@@ -52,10 +53,12 @@
     "@typescript-eslint/eslint-plugin": "^8.11.0",
     "@typescript-eslint/parser": "^8.11.0",
     "eslint": "^9.13.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-n": "^17.11.1",
     "eslint-plugin-promise": "^7.1.0",
     "eslint-plugin-react": "^7.33.2",
+    "prettier": "3.3.3",
     "typescript": "~5.3.3"
   },
   "private": true
