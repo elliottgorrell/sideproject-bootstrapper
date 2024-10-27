@@ -15,26 +15,30 @@ import {
   Zocial,
 } from "@expo/vector-icons";
 
-export type IconType =
-  | "AntDesign"
-  | "Entypo"
-  | "EvilIcons"
-  | "Feather"
-  | "FontAwesome"
-  | "FontAwesome5"
-  | "Fontisto"
-  | "Foundation"
-  | "Ionicons"
-  | "MaterialCommunityIcons"
-  | "MaterialIcons"
-  | "Octicons"
-  | "SimpleLineIcons"
-  | "Zocial";
+export type IconNameMap = {
+  AntDesign: keyof typeof AntDesign.glyphMap;
+  Entypo: keyof typeof Entypo.glyphMap;
+  EvilIcons: keyof typeof EvilIcons.glyphMap;
+  Feather: keyof typeof Feather.glyphMap;
+  FontAwesome: keyof typeof FontAwesome.glyphMap;
+  FontAwesome5: keyof typeof FontAwesome5.glyphMap;
+  Ionicons: keyof typeof Ionicons.glyphMap;
+  Fontisto: keyof typeof Fontisto.glyphMap;
+  Foundation: keyof typeof Foundation.glyphMap;
+  MaterialCommunityIcons: keyof typeof MaterialCommunityIcons.glyphMap;
+  MaterialIcons: keyof typeof MaterialIcons.glyphMap;
+  Octicons: keyof typeof Octicons.glyphMap;
+  SimpleLineIcons: keyof typeof SimpleLineIcons.glyphMap;
+  Zocial: keyof typeof Zocial.glyphMap;
+};
 
-export type IconProps = {
-  // todo: improve typing
-  type: IconType;
-  name: string;
+// Define IconType based on the keys of IconNameMap
+export type IconType = keyof IconNameMap;
+
+// Create a type that maps IconProps based on IconType
+export type IconProps<T extends IconType = IconType> = {
+  type: T;
+  name: IconNameMap[T];
   size?: number;
   color?: string;
 };
@@ -42,7 +46,12 @@ export type IconProps = {
 /**
  * An easy to use wrapper around expo-vector-icons
  */
-export const Icon = ({ type, name, size, color }: IconProps) => {
+export const Icon = <T extends IconType>({
+  type,
+  name,
+  size,
+  color,
+}: IconProps<T>) => {
   if (type === "AntDesign") {
     return <AntDesign name={name as any} size={size} color={color} />;
   }
