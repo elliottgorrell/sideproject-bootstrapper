@@ -44,7 +44,12 @@ module.exports = ({ config }) => {
       plugins: [
         "@react-native-firebase/app",
         "@react-native-firebase/auth",
-        ["expo-build-properties", { ios: { useFrameworks: "static" } }],
+        [
+          "expo-build-properties",
+          {
+            ios: { useFrameworks: "static" },
+          },
+        ],
         ["@react-native-google-signin/google-signin"],
         [
           "react-native-fbsdk-next",

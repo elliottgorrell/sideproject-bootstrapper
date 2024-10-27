@@ -1,5 +1,4 @@
 **/metro.config.js
-**/.eslintrc.js
 android/**/*
 ios/**/*
 .expo/**/*

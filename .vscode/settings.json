@@ -31,9 +31,12 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "eslint.useFlatConfig": true
