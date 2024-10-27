@@ -3,7 +3,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import { WelcomeScreen, CompletionScreen } from "../screens/onboarding";
+import { WelcomeScreen, CompletionScreen } from "@/screens/onboarding";
 
 export type OnboardingStackParamList = {
   Welcome: undefined;

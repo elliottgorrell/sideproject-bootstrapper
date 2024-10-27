@@ -8,7 +8,7 @@ import {
   ViewStyle,
 } from "react-native";
 import { useAppColorScheme } from "twrnc";
-import tailwind from "../lib/tailwind";
+import tailwind from "@/lib/tailwind";
 import { Icon, IconProps } from "./icon";
 
 export type ButtonVariant =

@@ -1,9 +1,9 @@
 import React from "react";
 import { View, SafeAreaView, Pressable, Text } from "react-native";
-import { Button, TextInput } from "../../components";
+import { Button, TextInput } from "@/components";
 import type { StackScreenProps } from "@react-navigation/stack";
-import type { AuthStackParamList } from "../../navigation/authStack";
-import tw from "../../lib/tailwind";
+import type { AuthStackParamList } from "@/navigation/authStack";
+import tw from "@/lib/tailwind";
 import auth from "@react-native-firebase/auth";
 
 const SignInScreenEmail: React.FC<

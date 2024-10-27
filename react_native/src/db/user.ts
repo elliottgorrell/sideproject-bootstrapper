@@ -1,6 +1,6 @@
 import { type Dispatch, type SetStateAction } from "react";
 import firestore from "@react-native-firebase/firestore";
-import { OnboardingStage, type User } from "../types/user";
+import { OnboardingStage, type User } from "@/types/user";
 
 const collectionName = "users";
 

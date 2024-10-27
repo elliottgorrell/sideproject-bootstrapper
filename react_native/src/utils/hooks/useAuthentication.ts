@@ -1,7 +1,7 @@
 import { useState, useEffect, type SetStateAction, type Dispatch } from "react";
 import auth from "@react-native-firebase/auth";
-import { getOrCreateUser } from "../../db/user";
-import { type User, LoggedOutUser } from "../../types/user";
+import { getOrCreateUser } from "@/db/user";
+import { type User, LoggedOutUser } from "@/types/user";
 
 export function useAuthentication(): {
   user: User;

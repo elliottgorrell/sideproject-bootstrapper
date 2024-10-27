@@ -6,12 +6,12 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from "react-native";
-import { CurrentUserContext } from "../../context";
-import { ProfileItem } from "../../components";
-import styles from "../../assets/styles";
+import { CurrentUserContext } from "@/context";
+import { ProfileItem } from "@/components";
+import styles from "@/assets/styles";
 import auth from "@react-native-firebase/auth";
-import { updateUser } from "../../db/user";
-import { OnboardingStage, type User } from "../../types/user";
+import { updateUser } from "@/db/user";
+import { OnboardingStage, type User } from "@/types/user";
 
 const signOutUserSync = (): void => {
   async function signOutUser(): Promise<void> {
@@ -43,7 +43,7 @@ export default function Profile(): React.JSX.Element {
 
   return (
     <ImageBackground
-      source={require("../../assets/images/bg.png")}
+      source={require("@/assets/images/bg.png")}
       style={styles.bg}
     >
       <ScrollView style={styles.containerProfile}>

@@ -2,9 +2,9 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { PRIMARY_COLOR, DARK_GRAY, BLACK, WHITE } from "../assets/styles";
-import { TabBarIcon } from "../components";
-import { Home, Secondary, Profile } from "../screens/main";
+import { PRIMARY_COLOR, DARK_GRAY, BLACK, WHITE } from "@/assets/styles";
+import { TabBarIcon } from "@/components";
+import { Home, Secondary, Profile } from "@/screens/main";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const Stack = createStackNavigator();

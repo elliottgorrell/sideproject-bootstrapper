@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View, Image, type ImageSourcePropType } from "react-native";
 
-import styles from "../assets/styles";
+import styles from "@/assets/styles";
 export interface MessageT {
   image: ImageSourcePropType;
   lastMessage: string;

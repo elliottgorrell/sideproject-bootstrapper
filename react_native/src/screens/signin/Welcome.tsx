@@ -1,15 +1,15 @@
 import React from "react";
 import { StyleSheet, SafeAreaView, View, Pressable, Text } from "react-native";
 import type { StackScreenProps } from "@react-navigation/stack";
-import { Button } from "../../components/button";
-import type { AuthStackParamList } from "../../navigation/authStack";
+import { Button } from "@/components/button";
+import type { AuthStackParamList } from "@/navigation/authStack";
 import auth, { type FirebaseAuthTypes } from "@react-native-firebase/auth";
 import { LoginManager, AccessToken } from "react-native-fbsdk-next";
 import {
   GoogleSignin,
   isSuccessResponse,
 } from "@react-native-google-signin/google-signin";
-import tw from "../../lib/tailwind";
+import tw from "@/lib/tailwind";
 
 GoogleSignin.configure({
   webClientId: "",

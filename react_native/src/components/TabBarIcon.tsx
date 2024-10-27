@@ -1,6 +1,6 @@
 import React from "react";
 import { Icon } from "./icon";
-import { DARK_GRAY, PRIMARY_COLOR } from "../assets/styles";
+import { DARK_GRAY, PRIMARY_COLOR } from "@/assets/styles";
 import { type Ionicons } from "@expo/vector-icons";
 
 export interface TabBarIconT {

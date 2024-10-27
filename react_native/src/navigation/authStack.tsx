@@ -7,7 +7,7 @@ import {
   WelcomeScreen,
   SignInEmailScreen,
   SignUpEmailScreen,
-} from "../screens/signin";
+} from "@/screens/signin";
 
 export type AuthStackParamList = {
   Welcome: undefined;

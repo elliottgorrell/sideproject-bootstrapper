@@ -1,8 +1,8 @@
 import React from "react";
 import { StyleSheet, SafeAreaView, View, Text } from "react-native";
 import type { StackScreenProps } from "@react-navigation/stack";
-import { Button } from "../../components/button";
-import type { OnboardingStackParamList } from "../../navigation/onboardingStack";
+import { Button } from "@/components/button";
+import type { OnboardingStackParamList } from "@/navigation/onboardingStack";
 import Svg, { Path, G, Rect } from "react-native-svg";
 
 const WelcomeScreen: React.FC<
