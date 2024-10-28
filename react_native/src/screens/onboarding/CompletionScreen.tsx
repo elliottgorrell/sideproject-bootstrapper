@@ -9,6 +9,7 @@ import { updateUserMetadata } from "@/db/user";
 import Svg, { Path, G, Rect } from "react-native-svg";
 import LottieView from "lottie-react-native";
 import SuccessAnimation from "@/./assets/animations/Success.json";
+import tw from "@/lib/tailwind";
 
 const CompletionScreen: React.FC<
   StackScreenProps<OnboardingStackParamList, "Completion">
@@ -18,7 +19,7 @@ const CompletionScreen: React.FC<
   const completeStage = (): void => {
     updateUserMetadata(
       { onboardingStage: OnboardingStage.Finished },
-      currUserContext,
+      currUserContext
     )
       .then(() => {
         console.debug("user marked as completed onboarding");
@@ -46,7 +47,7 @@ const CompletionScreen: React.FC<
           573.17 709.76 706.47 700.76
           859.76 709.76 894.35 666.76
           1146.35 709.76 h 110 V 1459.76 H -286.59 Z"
-              fill="#F27059"
+              fill={tw.color("neutral-500")}
             />
             <Path
               d="M -286.59 175.00 S -153.29 56.00
@@ -55,7 +56,7 @@ const CompletionScreen: React.FC<
           573.17 175.00 696.76 79.00
           859.76 175.00 907.35 97.50
           1146.35 175.00 h 110 V -600 H -286.59 Z"
-              fill="#3C1053"
+              fill={tw.color("secondary-700")}
             />
           </G>
         </Svg>
