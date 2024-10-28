@@ -1,4 +1,3 @@
-import { type Dispatch, type SetStateAction } from "react";
 import firestore from "@react-native-firebase/firestore";
 import { OnboardingStage, type UserMetadata, type User } from "@/types/user";
 import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth";
@@ -10,7 +9,7 @@ const defaultUserMetadata = {
 };
 
 export async function getUserMetadata(
-  uid: string
+  uid: string,
 ): Promise<UserMetadata | null> {
   console.debug(`fetching user from firestore with uid: ${uid}`);
   const userDocument = await firestore()
@@ -60,7 +59,7 @@ export interface UserMetadataUpdate {
  */
 export async function updateUserMetadata(
   metadata: UserMetadataUpdate,
-  currContext: CurrentUserContextType
+  currContext: CurrentUserContextType,
 ): Promise<void> {
   let { user, setUser } = currContext;
 
@@ -85,13 +84,13 @@ export async function updateUserMetadata(
 
 export async function updateUserInfo(
   updateInfo: FirebaseAuthTypes.UpdateProfile,
-  currContext: CurrentUserContextType
+  currContext: CurrentUserContextType,
 ): Promise<void> {
   // Update Firebase
   const user = auth().currentUser;
   if (!user) {
     throw new Error(
-      "udpate user info can only be used during a logged in session"
+      "udpate user info can only be used during a logged in session",
     );
   }
 

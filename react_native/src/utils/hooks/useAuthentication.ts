@@ -11,7 +11,7 @@ export function useAuthentication(): {
 
   useEffect(() => {
     const authStateChanged = async (
-      firebaseUser: FirebaseAuthTypes.User | null
+      firebaseUser: FirebaseAuthTypes.User | null,
     ) => {
       console.debug("Auth State Changed");
       if (firebaseUser === null) {

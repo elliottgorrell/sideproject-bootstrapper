@@ -18,7 +18,7 @@ const CompletionScreen: React.FC<
   const completeStage = (): void => {
     updateUserMetadata(
       { onboardingStage: OnboardingStage.Finished },
-      currUserContext
+      currUserContext,
     )
       .then(() => {
         console.debug("user marked as completed onboarding");
