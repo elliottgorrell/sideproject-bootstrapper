@@ -11,10 +11,6 @@ import {
 } from "@react-native-google-signin/google-signin";
 import tw from "@/lib/tailwind";
 
-GoogleSignin.configure({
-  webClientId: "",
-});
-
 const WelcomeScreen: React.FC<
   StackScreenProps<AuthStackParamList, "Welcome">
 > = ({ navigation }) => {
@@ -46,7 +42,7 @@ const WelcomeScreen: React.FC<
             onFacebookButtonPress()
               .then((userCredential) => {
                 console.log(
-                  `Signed in with Facebook for ${userCredential.user.displayName}!`,
+                  `Signed in with Facebook for ${userCredential.user.displayName}!`
                 );
               })
               .catch((err) => {
@@ -65,7 +61,7 @@ const WelcomeScreen: React.FC<
             onGoogleButtonPress()
               .then((userCredential) => {
                 console.log(
-                  `Signed in with Google for ${userCredential.user.displayName}!`,
+                  `Signed in with Google for ${userCredential.user.displayName}!`
                 );
               })
               .catch((err) => {
@@ -109,7 +105,7 @@ async function onFacebookButtonPress(): Promise<FirebaseAuthTypes.UserCredential
   }
   // Create a Firebase credential with the AccessToken
   const facebookCredential = auth.FacebookAuthProvider.credential(
-    data.accessToken,
+    data.accessToken
   );
   console.debug(`access_token: ${data.accessToken}`);
 
@@ -130,7 +126,7 @@ async function onGoogleButtonPress(): Promise<FirebaseAuthTypes.UserCredential> 
   if (isSuccessResponse(response)) {
     // Create a Google credential with the token
     const googleCredential = auth.GoogleAuthProvider.credential(
-      response.data.idToken,
+      response.data.idToken
     );
 
     // Sign-in the user with the credential

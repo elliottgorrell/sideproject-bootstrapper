@@ -1,11 +1,11 @@
 import React from "react";
-import { ImageBackground, View } from "react-native";
-import styles from "@/assets/styles";
+import { View, Text } from "react-native";
+import tw from "@/lib/tailwind";
 
 const Messages = (): React.JSX.Element => (
-  <ImageBackground source={require("@/assets/images/bg.png")} style={styles.bg}>
-    <View style={styles.containerSecondary}></View>
-  </ImageBackground>
+  <View style={tw`flex-1 flex-col bg-white items-center`}>
+    <Text style={tw`text-3xl font-extrabold`}>Hello World</Text>
+  </View>
 );
 
 export default Messages;

@@ -5,7 +5,7 @@ import { Button } from "@/components";
 import type { OnboardingStackParamList } from "@/navigation/onboardingStack";
 import { CurrentUserContext } from "@/context";
 import { OnboardingStage } from "@/types/user";
-import { updateUser } from "@/db/user";
+import { updateUserMetadata } from "@/db/user";
 import Svg, { Path, G, Rect } from "react-native-svg";
 import LottieView from "lottie-react-native";
 import SuccessAnimation from "@/./assets/animations/Success.json";
@@ -13,10 +13,13 @@ import SuccessAnimation from "@/./assets/animations/Success.json";
 const CompletionScreen: React.FC<
   StackScreenProps<OnboardingStackParamList, "Completion">
 > = ({ navigation }) => {
-  const { user, setUser } = useContext(CurrentUserContext);
+  const currUserContext = useContext(CurrentUserContext);
 
   const completeStage = (): void => {
-    updateUser({ ...user, onboardingStage: OnboardingStage.Finished }, setUser)
+    updateUserMetadata(
+      { onboardingStage: OnboardingStage.Finished },
+      currUserContext
+    )
       .then(() => {
         console.debug("user marked as completed onboarding");
       })

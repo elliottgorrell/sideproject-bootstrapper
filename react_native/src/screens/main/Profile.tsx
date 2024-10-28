@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { View, Text, Image } from "react-native";
-import { Button } from "@/components";
+import { Button, TextInput } from "@/components";
 import tw from "@/lib/tailwind";
-import { CurrentUserContext } from "@/context";
+import { CurrentUserContext, CurrentUserContextType } from "@/context";
 import auth from "@react-native-firebase/auth";
 import { updateUserMetadata } from "@/db/user";
 import { OnboardingStage, type User } from "@/types/user";
-
+import { updateUserInfo } from "@/db/user";
 const signOutUserSync = (): void => {
   async function signOutUser(): Promise<void> {
     await auth().signOut();
@@ -16,14 +16,12 @@ const signOutUserSync = (): void => {
   });
 };
 
-const resetOnboarding = (
-  user: User,
-  setUser: React.Dispatch<React.SetStateAction<User>>
-): void => {
+const resetOnboarding = (currUserContext: CurrentUserContextType): void => {
   async function inner(): Promise<void> {
-    user.metadata.onboardingStage = OnboardingStage.Welcome;
-    await updateUserMetadata(user, setUser);
-    await auth().signOut();
+    await updateUserMetadata(
+      { onboardingStage: OnboardingStage.Welcome },
+      currUserContext
+    );
   }
   inner().catch((e) => {
     console.error(e);
@@ -32,7 +30,7 @@ const resetOnboarding = (
 
 export default function Profile(): React.JSX.Element {
   const { user, setUser } = useContext(CurrentUserContext);
-  console.log(user);
+  const [newName, setNewName] = React.useState("");
 
   return (
     <View
@@ -49,9 +47,26 @@ export default function Profile(): React.JSX.Element {
         >
           <Text style={tw`text-white  text-center`}>Profile</Text>
         </View>
-        <Text style={tw`text-gray-500 text-center`}>
+        <Text style={tw`text-gray-500 text-center font-extrabold`}>
           {user.user.displayName}
         </Text>
+        <View style={tw`m-4 gap-3`}>
+          <TextInput
+            placeholder="New Name"
+            value={newName}
+            onChangeText={(text) => {
+              setNewName(text);
+            }}
+          />
+          <Button
+            onPress={() => {
+              updateUserInfo({ displayName: newName }, { user, setUser }).catch(
+                (e) => console.error(e)
+              );
+            }}
+            text="Update Display Name"
+          />
+        </View>
       </View>
 
       <View style={tw`flex-1 flex-row items-center gap-5`}>
@@ -65,7 +80,7 @@ export default function Profile(): React.JSX.Element {
             if (user === null) {
               return;
             }
-            resetOnboarding(user, setUser);
+            resetOnboarding({ user, setUser });
           }}
           text="Restart Onboarding"
           style={tw`rounded-3xl`}
