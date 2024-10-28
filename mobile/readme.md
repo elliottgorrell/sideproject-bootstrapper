@@ -26,11 +26,3 @@ For example I encountered the app crashing when i tried ot install the preview n
 `npx expo run:ios --configuration Release`
 
 This sometimes reveals issues related to release configuration
-
-## Emulators
-
-NOTE: This is currently broken
-We do have a fully local stack of all the firebase services running in a docker container. This can be stood up and connected to by doing
-
-1. `docker-compose up --build`
-2. `cd react_native && FIREBASE_EMULATOR_ENABLED="true" npm start`

@@ -19,7 +19,7 @@
   ],
   "eslint.format.enable": true,
   "eslint.workingDirectories": [
-    "./react_native"
+    "./mobile"
   ],
   "[firestorerules]": {
     "editor.defaultFormatter": "ChFlick.firecode"

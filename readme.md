@@ -2,7 +2,7 @@
 
 ## Monorepo Organizational Structure
 
-- react_native (The code for all the frontends (ios, android, www))
+- mobile (A react native app for mobile)
 - ci (All the code related to CI/CD)
 - infra (All infra code related to cloud deployment of the service)
 - firebase (The config for our firebase project and also the local emulation suite)
