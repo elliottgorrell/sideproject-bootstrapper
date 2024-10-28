@@ -1,0 +1,4 @@
+# Ignore the terraform state files (will need somewhere to store this in future rather than on my machine)
+infra/.terraform.tfstate
+infra/.terraform.lock.hcl
+infra/terraform.tfstate
