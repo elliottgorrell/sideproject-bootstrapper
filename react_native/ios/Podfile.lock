@@ -1429,42 +1429,42 @@ PODS:
     - FBSDKCoreKit (= 16.3.1)
   - FBSDKShareKit (16.3.1):
     - FBSDKCoreKit (= 16.3.1)
-  - Firebase/Auth (11.3.0):
+  - Firebase/Auth (11.4.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (~> 11.3.0)
-  - Firebase/CoreOnly (11.3.0):
-    - FirebaseCore (= 11.3.0)
-  - Firebase/Firestore (11.3.0):
+    - FirebaseAuth (~> 11.4.0)
+  - Firebase/CoreOnly (11.4.0):
+    - FirebaseCore (= 11.4.0)
+  - Firebase/Firestore (11.4.0):
     - Firebase/CoreOnly
-    - FirebaseFirestore (~> 11.3.0)
-  - Firebase/Storage (11.3.0):
+    - FirebaseFirestore (~> 11.4.0)
+  - Firebase/Storage (11.4.0):
     - Firebase/CoreOnly
-    - FirebaseStorage (~> 11.3.0)
+    - FirebaseStorage (~> 11.4.0)
   - FirebaseAppCheckInterop (11.4.0)
-  - FirebaseAuth (11.3.0):
+  - FirebaseAuth (11.4.0):
     - FirebaseAppCheckInterop (~> 11.0)
     - FirebaseAuthInterop (~> 11.0)
-    - FirebaseCore (~> 11.0)
-    - FirebaseCoreExtension (~> 11.0)
+    - FirebaseCore (~> 11.4)
+    - FirebaseCoreExtension (~> 11.4)
     - GoogleUtilities/AppDelegateSwizzler (~> 8.0)
     - GoogleUtilities/Environment (~> 8.0)
-    - GTMSessionFetcher/Core (~> 3.4)
+    - GTMSessionFetcher/Core (< 5.0, >= 3.4)
     - RecaptchaInterop (~> 100.0)
   - FirebaseAuthInterop (11.4.0)
-  - FirebaseCore (11.3.0):
+  - FirebaseCore (11.4.0):
     - FirebaseCoreInternal (~> 11.0)
     - GoogleUtilities/Environment (~> 8.0)
     - GoogleUtilities/Logger (~> 8.0)
-  - FirebaseCoreExtension (11.3.0):
+  - FirebaseCoreExtension (11.4.1):
     - FirebaseCore (~> 11.0)
   - FirebaseCoreInternal (11.4.2):
     - "GoogleUtilities/NSData+zlib (~> 8.0)"
-  - FirebaseFirestore (11.3.0):
-    - FirebaseCore (~> 11.0)
-    - FirebaseCoreExtension (~> 11.0)
-    - FirebaseFirestoreInternal (= 11.3.0)
+  - FirebaseFirestore (11.4.0):
+    - FirebaseCore (~> 11.4)
+    - FirebaseCoreExtension (~> 11.4)
+    - FirebaseFirestoreInternal (= 11.4.0)
     - FirebaseSharedSwift (~> 11.0)
-  - FirebaseFirestoreInternal (11.3.0):
+  - FirebaseFirestoreInternal (11.4.0):
     - abseil/algorithm (~> 1.20240116.1)
     - abseil/base (~> 1.20240116.1)
     - abseil/container/flat_hash_map (~> 1.20240116.1)
@@ -1480,13 +1480,13 @@ PODS:
     - leveldb-library (~> 1.22)
     - nanopb (~> 3.30910.0)
   - FirebaseSharedSwift (11.4.0)
-  - FirebaseStorage (11.3.0):
+  - FirebaseStorage (11.4.0):
     - FirebaseAppCheckInterop (~> 11.0)
     - FirebaseAuthInterop (~> 11.0)
-    - FirebaseCore (~> 11.0)
-    - FirebaseCoreExtension (~> 11.0)
+    - FirebaseCore (~> 11.4)
+    - FirebaseCoreExtension (~> 11.4)
     - GoogleUtilities/Environment (~> 8.0)
-    - GTMSessionFetcher/Core (~> 3.4)
+    - GTMSessionFetcher/Core (< 5.0, >= 3.4)
   - fmt (9.1.0)
   - glog (0.3.5)
   - GoogleSignIn (7.1.0):
@@ -2943,7 +2943,6 @@ DEPENDENCIES:
   - ExpoModulesCore (from `../node_modules/expo-modules-core`)
   - EXUpdatesInterface (from `../node_modules/expo-updates-interface/ios`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
-  - FirebaseCoreExtension (= 11.3.0)
   - fmt (from `../node_modules/react-native/third-party-podspecs/fmt.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
@@ -3243,17 +3242,17 @@ SPEC CHECKSUMS:
   FBSDKGamingServicesKit: fb0dcf086e8ca51f5a0074908edb783dba286af0
   FBSDKLoginKit: 572cca0bc6c90067ef197187697cb3b584310c52
   FBSDKShareKit: d9269157b4e9620f0bc1a461c5ead35a65cede9a
-  Firebase: 5c575140761e22324806f401e38c483d58db2dec
+  Firebase: cf1b19f21410b029b6786a54e9764a0cacad3c99
   FirebaseAppCheckInterop: 1b9643ae2f1ee214488caa2f8e32b7bc2f0f3735
-  FirebaseAuth: c7b82c8f3942c22629145c3f2972c33d1dc3ee6c
+  FirebaseAuth: c359af98bd703cbf4293eec107a40de08ede6ce6
   FirebaseAuthInterop: 9ac948965ac13ec9d8a080f39490ddb2bda30520
-  FirebaseCore: 8542de610f35f86196ba26cdb2544565a5157c8e
-  FirebaseCoreExtension: 30bb063476ef66cd46925243d64ad8b2c8ac3264
+  FirebaseCore: e0510f1523bc0eb21653cac00792e1e2bd6f1771
+  FirebaseCoreExtension: f1bc67a4702931a7caa097d8e4ac0a1b0d16720e
   FirebaseCoreInternal: 35731192cab10797b88411be84940d2beb33a238
-  FirebaseFirestore: e83d088457c90adb2abff42e5c0aaa592151e5ac
-  FirebaseFirestoreInternal: 6492b7efdab5085ccd674e53591d5ebf5065d7f3
+  FirebaseFirestore: 2ccdf893fd7e175aa8ec58faa06338b346d27db8
+  FirebaseFirestoreInternal: 004452c4669d5df8869c9f8f7a24ee0009852d5b
   FirebaseSharedSwift: 505dae2d05969dbf6d43749a642bb1bf230f0252
-  FirebaseStorage: d011ded57cc2c5904bbba947f269db506a788ea0
+  FirebaseStorage: 1bf8f80ac3bb02c72844b7350e95e10be7113ef0
   fmt: 4c2741a687cc09f0634a2e2c72a838b99f1ff120
   glog: fdfdfe5479092de0c4bdbebedd9056951f092c4f
   GoogleSignIn: d4281ab6cf21542b1cfaff85c191f230b399d2db
@@ -3330,6 +3329,6 @@ SPEC CHECKSUMS:
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   Yoga: 33622183a85805e12703cd618b2c16bfd18bfffb
 
-PODFILE CHECKSUM: 3d3d03fb0580003c0d734f1d3267ba6c9385cf3d
+PODFILE CHECKSUM: 1a184918e9c6d5fff586b79abc6189f202ba8e2e
 
 COCOAPODS: 1.15.2

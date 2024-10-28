@@ -1,18 +1,12 @@
 import React, { useContext } from "react";
-import {
-  ScrollView,
-  View,
-  Text,
-  ImageBackground,
-  TouchableOpacity,
-} from "react-native";
-import { CurrentUserContext } from "../../context";
-import { ProfileItem } from "../../components";
-import styles from "../../assets/styles";
+import { View, Text, Image } from "react-native";
+import { Button, TextInput } from "@/components";
+import tw from "@/lib/tailwind";
+import { CurrentUserContext, CurrentUserContextType } from "@/context";
 import auth from "@react-native-firebase/auth";
-import { updateUser } from "../../db/user";
-import { OnboardingStage, type User } from "../../types/user";
-
+import { updateUserMetadata } from "@/db/user";
+import { OnboardingStage } from "@/types/user";
+import { updateUserInfo } from "@/db/user";
 const signOutUserSync = (): void => {
   async function signOutUser(): Promise<void> {
     await auth().signOut();
@@ -22,16 +16,12 @@ const signOutUserSync = (): void => {
   });
 };
 
-const resetOnboarding = (
-  user: User,
-  setUser: React.Dispatch<React.SetStateAction<User>>,
-): void => {
+const resetOnboarding = (currUserContext: CurrentUserContextType): void => {
   async function inner(): Promise<void> {
-    await updateUser(
-      { ...user, onboardingStage: OnboardingStage.Welcome },
-      setUser,
+    await updateUserMetadata(
+      { onboardingStage: OnboardingStage.Welcome },
+      currUserContext,
     );
-    await auth().signOut();
   }
   inner().catch((e) => {
     console.error(e);
@@ -40,37 +30,62 @@ const resetOnboarding = (
 
 export default function Profile(): React.JSX.Element {
   const { user, setUser } = useContext(CurrentUserContext);
+  const [newName, setNewName] = React.useState("");
 
   return (
-    <ImageBackground
-      source={require("../../assets/images/bg.png")}
-      style={styles.bg}
+    <View
+      style={tw`flex-1 flex-col bg-gray-300 items-center gap-5 justify-between`}
     >
-      <ScrollView style={styles.containerProfile}>
-        <ImageBackground
-          source={{ uri: user.profilePictureUrl }}
-          style={styles.photo}
-        />
+      <Image
+        source={{ uri: user.user.photoURL }}
+        style={tw`rounded-full aspect-square w-2/6 m-5`}
+      />
 
-        <ProfileItem name={user.displayName} />
-
-        <View style={styles.actionsProfile}>
-          <TouchableOpacity
-            style={styles.roundedButton}
-            onPress={signOutUserSync}
-          >
-            <Text style={styles.textButton}>Sign Out</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.roundedButton}
-            onPress={() => {
-              resetOnboarding(user, setUser);
-            }}
-          >
-            <Text style={styles.textButton}>Restart Onboarding</Text>
-          </TouchableOpacity>
+      <View style={tw`flex-2 bg-white rounded-3xl w-4/5`}>
+        <View
+          style={tw`bg-neutral-500 relative -top-4 w-1/4 py-2 px-5 rounded-3xl self-center`}
+        >
+          <Text style={tw`text-white  text-center`}>Profile</Text>
         </View>
-      </ScrollView>
-    </ImageBackground>
+        <Text style={tw`text-gray-500 text-center font-extrabold`}>
+          {user.user.displayName}
+        </Text>
+        <View style={tw`m-4 gap-3`}>
+          <TextInput
+            placeholder="New Name"
+            value={newName}
+            onChangeText={(text) => {
+              setNewName(text);
+            }}
+          />
+          <Button
+            onPress={() => {
+              updateUserInfo({ displayName: newName }, { user, setUser }).catch(
+                (e) => console.error(e),
+              );
+            }}
+            text="Update Display Name"
+          />
+        </View>
+      </View>
+
+      <View style={tw`flex-1 flex-row items-center gap-5`}>
+        <Button
+          onPress={signOutUserSync}
+          text="Sign Out"
+          style={tw`rounded-3xl`}
+        />
+        <Button
+          onPress={() => {
+            if (user === null) {
+              return;
+            }
+            resetOnboarding({ user, setUser });
+          }}
+          text="Restart Onboarding"
+          style={tw`rounded-3xl`}
+        />
+      </View>
+    </View>
   );
 }

@@ -1,22 +1,26 @@
 import React, { useContext } from "react";
 import { StyleSheet, SafeAreaView, View } from "react-native";
 import type { StackScreenProps } from "@react-navigation/stack";
-import { Button } from "@ui-kitten/components";
-import type { OnboardingStackParamList } from "../../navigation/onboardingStack";
-import { CurrentUserContext } from "../../context";
-import { OnboardingStage } from "../../types/user";
-import { updateUser } from "../../db/user";
+import { Button } from "@/components";
+import type { OnboardingStackParamList } from "@/navigation/onboardingStack";
+import { CurrentUserContext } from "@/context";
+import { OnboardingStage } from "@/types/user";
+import { updateUserMetadata } from "@/db/user";
 import Svg, { Path, G, Rect } from "react-native-svg";
 import LottieView from "lottie-react-native";
-import SuccessAnimation from "../.././assets/animations/Success.json";
+import SuccessAnimation from "@/./assets/animations/Success.json";
+import tw from "@/lib/tailwind";
 
 const CompletionScreen: React.FC<
   StackScreenProps<OnboardingStackParamList, "Completion">
 > = ({ navigation }) => {
-  const { user, setUser } = useContext(CurrentUserContext);
+  const currUserContext = useContext(CurrentUserContext);
 
   const completeStage = (): void => {
-    updateUser({ ...user, onboardingStage: OnboardingStage.Finished }, setUser)
+    updateUserMetadata(
+      { onboardingStage: OnboardingStage.Finished },
+      currUserContext
+    )
       .then(() => {
         console.debug("user marked as completed onboarding");
       })
@@ -43,7 +47,7 @@ const CompletionScreen: React.FC<
           573.17 709.76 706.47 700.76
           859.76 709.76 894.35 666.76
           1146.35 709.76 h 110 V 1459.76 H -286.59 Z"
-              fill="#F27059"
+              fill={tw.color("neutral-500")}
             />
             <Path
               d="M -286.59 175.00 S -153.29 56.00
@@ -52,7 +56,7 @@ const CompletionScreen: React.FC<
           573.17 175.00 696.76 79.00
           859.76 175.00 907.35 97.50
           1146.35 175.00 h 110 V -600 H -286.59 Z"
-              fill="#3C1053"
+              fill={tw.color("secondary-700")}
             />
           </G>
         </Svg>
@@ -67,7 +71,7 @@ const CompletionScreen: React.FC<
         />
       </View>
       <View style={styles.buttonsContainer}>
-        <Button size="large" style={styles.button} onPress={completeStage}>
+        <Button style={styles.button} onPress={completeStage}>
           Complete
         </Button>
       </View>

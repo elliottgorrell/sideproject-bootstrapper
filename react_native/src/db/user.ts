@@ -1,14 +1,16 @@
-import { type Dispatch, type SetStateAction } from "react";
 import firestore from "@react-native-firebase/firestore";
-import { OnboardingStage, type User } from "../types/user";
-
+import { OnboardingStage, type UserMetadata, type User } from "@/types/user";
+import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth";
+import { type CurrentUserContextType } from "@/context";
 const collectionName = "users";
 
-const defaultUser = {
+const defaultUserMetadata = {
   onboardingStage: OnboardingStage.Welcome,
 };
 
-export async function getUser(uid: string): Promise<User | null> {
+export async function getUserMetadata(
+  uid: string,
+): Promise<UserMetadata | null> {
   console.debug(`fetching user from firestore with uid: ${uid}`);
   const userDocument = await firestore()
     .collection(collectionName)
@@ -16,7 +18,7 @@ export async function getUser(uid: string): Promise<User | null> {
     .get();
 
   if (userDocument.exists) {
-    const user = userDocument.data() as User;
+    const user = userDocument.data() as UserMetadata;
     user.uid = uid;
     return user;
   } else {
@@ -24,30 +26,28 @@ export async function getUser(uid: string): Promise<User | null> {
   }
 }
 
-export async function getOrCreateUser(uid: string): Promise<User> {
-  let user = await getUser(uid);
+export async function createUserMetadata(uid: string): Promise<UserMetadata> {
+  console.debug(`creating a new user`);
+  const currUser = await getUserMetadata(uid);
 
+  if (currUser !== null) {
+    throw new Error("User already exists");
+  }
+  await firestore()
+    .collection(collectionName)
+    .doc(uid)
+    .set({ ...defaultUserMetadata });
+
+  const user = await getUserMetadata(uid);
   if (user === null) {
-    console.debug("User does not exist. Creating...");
-    await createUser(uid);
-    user = await getUser(uid);
-
-    if (user === null) {
-      throw new Error("User was not created. This should never happen");
-    }
+    throw new Error("Couldn't retrieve user after creation");
   }
 
   return user;
 }
 
-export async function createUser(uid: string): Promise<void> {
-  const currUser = await getUser(uid);
-
-  if (currUser === null) {
-    await firestore().collection(collectionName).doc(uid).set(defaultUser);
-  } else {
-    throw new Error("User already exists");
-  }
+export interface UserMetadataUpdate {
+  onboardingStage?: OnboardingStage;
 }
 
 /**
@@ -57,10 +57,52 @@ export async function createUser(uid: string): Promise<void> {
  * @param user
  * @param setUser
  */
-export async function updateUser(
-  user: User,
-  setUser: Dispatch<SetStateAction<User>>,
+export async function updateUserMetadata(
+  metadata: UserMetadataUpdate,
+  currContext: CurrentUserContextType,
 ): Promise<void> {
-  await firestore().collection(collectionName).doc(user.uid).update(user);
+  let { user, setUser } = currContext;
+
+  // Update user object with new metadata
+  user = {
+    ...user,
+    metadata: {
+      ...user.metadata,
+      ...metadata,
+    },
+  };
+
+  // await metadata in firestore
+  await firestore()
+    .collection(collectionName)
+    .doc(user.user.uid)
+    .update(metadata);
+
+  // Notify React context with updated user object
   setUser(user);
+}
+
+export async function updateUserInfo(
+  updateInfo: FirebaseAuthTypes.UpdateProfile,
+  currContext: CurrentUserContextType,
+): Promise<void> {
+  // Update Firebase
+  const user = auth().currentUser;
+  if (!user) {
+    throw new Error(
+      "udpate user info can only be used during a logged in session",
+    );
+  }
+
+  await user.updateProfile(updateInfo);
+  // Notify React context of updated user object
+  const updatedUser: User = {
+    ...currContext.user,
+    user: {
+      ...currContext.user.user,
+      ...(updateInfo as FirebaseAuthTypes.UserInfo),
+    },
+  };
+  console.debug(`updated user: ${JSON.stringify(updatedUser)}`);
+  currContext.setUser(updatedUser);
 }

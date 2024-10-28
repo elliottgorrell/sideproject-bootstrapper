@@ -2,13 +2,23 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { PRIMARY_COLOR, DARK_GRAY, BLACK, WHITE } from "../assets/styles";
-import { TabBarIcon } from "../components";
-import { Home, Secondary, Profile } from "../screens/main";
+import { Home, Secondary, Profile } from "@/screens/main";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-
+import tw from "@/lib/tailwind";
+import { Icon } from "@/components";
+import { Ionicons } from "@expo/vector-icons";
 const Stack = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();
+
+type tabIconsType = {
+  [key: string]: keyof typeof Ionicons.glyphMap;
+};
+
+const tabIcons: tabIconsType = {
+  Home: "albums-outline",
+  Secondary: "chatbubble",
+  Profile: "person",
+};
 
 export default function MainStack(): React.JSX.Element {
   const insets = useSafeAreaInsets();
@@ -22,21 +32,14 @@ export default function MainStack(): React.JSX.Element {
         >
           {() => (
             <Tab.Navigator
-              screenOptions={{
-                swipeEnabled: false,
-                tabBarInactiveTintColor: DARK_GRAY,
-                tabBarActiveTintColor: PRIMARY_COLOR,
+              screenOptions={({ route }) => ({
+                tabBarInactiveTintColor: tw.color("neutral-200"),
+                tabBarActiveTintColor: tw.color("neutral-500"),
                 tabBarIndicatorStyle: {
                   backgroundColor: "transparent",
                 },
                 tabBarStyle: {
-                  backgroundColor: WHITE,
-                  borderTopWidth: 0,
-                  marginBottom: 0,
-                  shadowOpacity: 0.05,
-                  shadowRadius: 10,
-                  shadowColor: BLACK,
-                  shadowOffset: { height: 0, width: 0 },
+                  backgroundColor: tw.color("white"),
                   paddingTop: insets.top,
                   paddingLeft: insets.left,
                   paddingRight: insets.right,
@@ -45,38 +48,23 @@ export default function MainStack(): React.JSX.Element {
                   minHeight: 40,
                   minWidth: 40,
                 },
+                tabBarIcon: ({ focused, color }) => {
+                  let iconName = tabIcons[route.name as keyof typeof tabIcons];
+                  return (
+                    <Icon
+                      type="Ionicons"
+                      name={iconName}
+                      size={32}
+                      color={color}
+                    />
+                  );
+                },
                 tabBarShowLabel: false,
-              }}
+              })}
             >
-              <Tab.Screen
-                name="Explore"
-                component={Home}
-                options={{
-                  tabBarIcon: ({ focused }) => (
-                    <TabBarIcon focused={focused} iconName="albums-outline" />
-                  ),
-                }}
-              />
-
-              <Tab.Screen
-                name="Secondary"
-                component={Secondary}
-                options={{
-                  tabBarIcon: ({ focused }) => (
-                    <TabBarIcon focused={focused} iconName="chatbubble" />
-                  ),
-                }}
-              />
-
-              <Tab.Screen
-                name="Profile"
-                component={Profile}
-                options={{
-                  tabBarIcon: ({ focused }) => (
-                    <TabBarIcon focused={focused} iconName="person" />
-                  ),
-                }}
-              />
+              <Tab.Screen name="Home" component={Home} />
+              <Tab.Screen name={"Secondary"} component={Secondary} />
+              <Tab.Screen name={"Profile"} component={Profile} />
             </Tab.Navigator>
           )}
         </Stack.Screen>

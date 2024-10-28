@@ -1,7 +1,7 @@
 import { useState, useEffect, type SetStateAction, type Dispatch } from "react";
-import auth from "@react-native-firebase/auth";
-import { getOrCreateUser } from "../../db/user";
-import { type User, LoggedOutUser } from "../../types/user";
+import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth";
+import { getUserMetadata, createUserMetadata } from "@/db/user";
+import { type User, LoggedOutUser } from "@/types/user";
 
 export function useAuthentication(): {
   user: User;
@@ -10,7 +10,9 @@ export function useAuthentication(): {
   const [user, setUser] = useState<User>(LoggedOutUser);
 
   useEffect(() => {
-    const unsubscribe = auth().onAuthStateChanged((firebaseUser) => {
+    const authStateChanged = async (
+      firebaseUser: FirebaseAuthTypes.User | null,
+    ) => {
       console.debug("Auth State Changed");
       if (firebaseUser === null) {
         console.debug("User Logged Out");
@@ -18,16 +20,24 @@ export function useAuthentication(): {
         setUser(LoggedOutUser);
         return;
       }
-      getOrCreateUser(firebaseUser.uid)
-        .then((firestoreUser) => {
-          setUser(firestoreUser);
-          console.debug("User Logged In");
-        })
-        .catch((error) => {
-          // TODO: Proper error handling
-          console.error(error);
-          setUser(LoggedOutUser);
-        });
+      console.debug(`User Info: ${JSON.stringify(firebaseUser)}`);
+      let userMetadata = await getUserMetadata(firebaseUser.uid);
+      if (userMetadata == null) {
+        userMetadata = await createUserMetadata(firebaseUser.uid);
+      }
+      let newUser = {
+        user: firebaseUser as FirebaseAuthTypes.UserInfo,
+        metadata: userMetadata,
+      };
+      setUser(newUser);
+      console.debug("User Logged In");
+    };
+
+    const unsubscribe = auth().onAuthStateChanged((firebaseUser) => {
+      authStateChanged(firebaseUser).catch((e) => {
+        console.error(e);
+        setUser(LoggedOutUser);
+      });
     });
     return unsubscribe;
   }, []);

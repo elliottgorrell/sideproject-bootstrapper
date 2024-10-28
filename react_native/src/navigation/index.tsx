@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import MainStack from "./mainStack";
 import AuthStack from "./authStack";
 import OnboardingStack from "./onboardingStack";
-import { OnboardingStage, LoggedOutUser } from "../types/user";
-import { CurrentUserContext } from "../context";
+import { LoggedOutUser, OnboardingStage } from "@/types/user";
+import { CurrentUserContext } from "@/context";
 
 export default function RootNavigation(): React.JSX.Element {
   const { user } = useContext(CurrentUserContext);
@@ -12,7 +12,7 @@ export default function RootNavigation(): React.JSX.Element {
     return <AuthStack />;
   }
 
-  if (user.onboardingStage !== OnboardingStage.Finished) {
+  if (user.metadata.onboardingStage !== OnboardingStage.Finished) {
     return <OnboardingStack />;
   }
 
