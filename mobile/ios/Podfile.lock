@@ -1373,7 +1373,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - ExpoAdapterFBSDKNext (12.2.0):
+  - ExpoAdapterFBSDKNext (13.1.3):
     - ExpoModulesCore
     - FBSDKCoreKit
     - React-Core
@@ -1414,21 +1414,21 @@ PODS:
     - Yoga
   - EXUpdatesInterface (0.16.2):
     - ExpoModulesCore
-  - FBAEMKit (16.3.1):
-    - FBSDKCoreKit_Basics (= 16.3.1)
+  - FBAEMKit (17.3.0):
+    - FBSDKCoreKit_Basics (= 17.3.0)
   - FBLazyVector (0.74.5)
-  - FBSDKCoreKit (16.3.1):
-    - FBAEMKit (= 16.3.1)
-    - FBSDKCoreKit_Basics (= 16.3.1)
-  - FBSDKCoreKit_Basics (16.3.1)
-  - FBSDKGamingServicesKit (16.3.1):
-    - FBSDKCoreKit (= 16.3.1)
-    - FBSDKCoreKit_Basics (= 16.3.1)
-    - FBSDKShareKit (= 16.3.1)
-  - FBSDKLoginKit (16.3.1):
-    - FBSDKCoreKit (= 16.3.1)
-  - FBSDKShareKit (16.3.1):
-    - FBSDKCoreKit (= 16.3.1)
+  - FBSDKCoreKit (17.3.0):
+    - FBAEMKit (= 17.3.0)
+    - FBSDKCoreKit_Basics (= 17.3.0)
+  - FBSDKCoreKit_Basics (17.3.0)
+  - FBSDKGamingServicesKit (17.3.0):
+    - FBSDKCoreKit (= 17.3.0)
+    - FBSDKCoreKit_Basics (= 17.3.0)
+    - FBSDKShareKit (= 17.3.0)
+  - FBSDKLoginKit (17.3.0):
+    - FBSDKCoreKit (= 17.3.0)
+  - FBSDKShareKit (17.3.0):
+    - FBSDKCoreKit (= 17.3.0)
   - Firebase/Auth (11.4.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 11.4.0)
@@ -2568,20 +2568,20 @@ PODS:
   - React-Mapbuffer (0.74.5):
     - glog
     - React-debug
-  - react-native-fbsdk-next (12.2.0):
+  - react-native-fbsdk-next (13.1.3):
     - React-Core
-    - react-native-fbsdk-next/Core (= 12.2.0)
-    - react-native-fbsdk-next/Login (= 12.2.0)
-    - react-native-fbsdk-next/Share (= 12.2.0)
-  - react-native-fbsdk-next/Core (12.2.0):
-    - FBSDKCoreKit (~> 16.3.1)
+    - react-native-fbsdk-next/Core (= 13.1.3)
+    - react-native-fbsdk-next/Login (= 13.1.3)
+    - react-native-fbsdk-next/Share (= 13.1.3)
+  - react-native-fbsdk-next/Core (13.1.3):
+    - FBSDKCoreKit (~> 17.3)
     - React-Core
-  - react-native-fbsdk-next/Login (12.2.0):
-    - FBSDKLoginKit (~> 16.3.1)
+  - react-native-fbsdk-next/Login (13.1.3):
+    - FBSDKLoginKit (~> 17.3)
     - React-Core
-  - react-native-fbsdk-next/Share (12.2.0):
-    - FBSDKGamingServicesKit (~> 16.3.1)
-    - FBSDKShareKit (~> 16.3.1)
+  - react-native-fbsdk-next/Share (13.1.3):
+    - FBSDKGamingServicesKit (~> 17.3)
+    - FBSDKShareKit (~> 17.3)
     - React-Core
   - react-native-pager-view (6.3.0):
     - DoubleConversion
@@ -3227,7 +3227,7 @@ SPEC CHECKSUMS:
   expo-dev-launcher: 4de360c8a60e960164bc84d8e459b6d5c0bc6c5a
   expo-dev-menu: d967c9c74e9ba53ea2aecd105c8a63042673fa0c
   expo-dev-menu-interface: be32c09f1e03833050f0ee290dcc86b3ad0e73e4
-  ExpoAdapterFBSDKNext: 1df7347324200bf7efb288fdb902c68224054f43
+  ExpoAdapterFBSDKNext: 28938bda1b439172156ae0699842cfbba63ba3b0
   ExpoAdapterGoogleSignIn: da10ae7e7c1d73a10c2facebcdfe5ebea8e073ce
   ExpoAsset: 323700f291684f110fb55f0d4022a3362ea9f875
   ExpoFileSystem: 80bfe850b1f9922c16905822ecbf97acd711dc51
@@ -3235,13 +3235,13 @@ SPEC CHECKSUMS:
   ExpoKeepAwake: 3b8815d9dd1d419ee474df004021c69fdd316d08
   ExpoModulesCore: 1914927fe4a693215b1ed57eb934c15641d4aef7
   EXUpdatesInterface: 996527fd7d1a5d271eb523258d603f8f92038f24
-  FBAEMKit: 6c7b5eb77c96861bb59e040842c6e55bf39512ce
+  FBAEMKit: 92f488a9c97208e2f6f01655750944d213fbc0b0
   FBLazyVector: ac12dc084d1c8ec4cc4d7b3cf1b0ebda6dab85af
-  FBSDKCoreKit: 5e4dd478947ab1bcc887e8cfadeae0727af1a942
-  FBSDKCoreKit_Basics: cd7b5f5d1e8868c26706917919d058999ca672c3
-  FBSDKGamingServicesKit: fb0dcf086e8ca51f5a0074908edb783dba286af0
-  FBSDKLoginKit: 572cca0bc6c90067ef197187697cb3b584310c52
-  FBSDKShareKit: d9269157b4e9620f0bc1a461c5ead35a65cede9a
+  FBSDKCoreKit: 1be47a742ccdddf8dd85272c3953534214dc0f30
+  FBSDKCoreKit_Basics: fcafe75f7deeed1146d04ea51b45a69731e63c16
+  FBSDKGamingServicesKit: c9cb7317649310a4211796166c255122b7513480
+  FBSDKLoginKit: ad0d6485feace32d65f407f6a288c4dfa8ec559c
+  FBSDKShareKit: e96f20fc2f6f68d25ae310a0f64f147f25ef66a4
   Firebase: cf1b19f21410b029b6786a54e9764a0cacad3c99
   FirebaseAppCheckInterop: 1b9643ae2f1ee214488caa2f8e32b7bc2f0f3735
   FirebaseAuth: c359af98bd703cbf4293eec107a40de08ede6ce6
@@ -3290,7 +3290,7 @@ SPEC CHECKSUMS:
   React-jsitracing: c83efb63c8e9e1dff72a3c56e88ae1c530a87795
   React-logger: 257858bd55f3a4e1bc0cf07ddc8fb9faba6f8c7c
   React-Mapbuffer: dce508662b995ffefd29e278a16b78217039d43d
-  react-native-fbsdk-next: fcecfa33c37ce63bcda9cd24766ee9d345463230
+  react-native-fbsdk-next: 0326e3f3892b3f1cb66bfb884f289e2bb818ee89
   react-native-pager-view: b4ba00095f74ab430250cef2a119a5e2491b2c8d
   react-native-safe-area-context: a240ad4b683349e48b1d51fed1611138d1bdad97
   React-nativeconfig: f326487bc61eba3f0e328da6efb2711533dcac46

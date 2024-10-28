@@ -111,8 +111,8 @@ resource "google_identity_platform_default_supported_idp_config" "facebook" {
 
   enabled       = true
   idp_id        = "facebook.com"
-  client_id     = local.secrets.fb_client_id
-  client_secret = local.secrets.fb_client_secret
+  client_id     = local.secrets.fb_app_id
+  client_secret = local.secrets.fb_client_token
 
   depends_on = [
     google_identity_platform_config.default,
