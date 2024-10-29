@@ -49,7 +49,7 @@ export async function facebookClassicLogin(): Promise<FirebaseAuthTypes.UserCred
  */
 export async function facebookLimitedLoginiOS(): Promise<FirebaseAuthTypes.UserCredential> {
   // Create a nonce
-  const nonce = '123456';
+  const nonce = Date.now().toString();
   const nonceSha256 = await sha256(nonce);
 
   // Attempt login with permissions and limited login
