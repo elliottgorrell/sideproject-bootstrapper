@@ -1,10 +1,17 @@
 import React from "react";
-import { StyleSheet, SafeAreaView, View, Pressable, Text } from "react-native";
+import {
+  StyleSheet,
+  SafeAreaView,
+  View,
+  Pressable,
+  Text,
+  Platform,
+} from "react-native";
 import type { StackScreenProps } from "@react-navigation/stack";
 import { Button } from "@/components/button";
 import type { AuthStackParamList } from "@/navigation/authStack";
 import auth, { type FirebaseAuthTypes } from "@react-native-firebase/auth";
-import { LoginManager, AccessToken } from "react-native-fbsdk-next";
+import { facebookClassicLogin, facebookLimitedLoginiOS } from "@/lib/facebook";
 import {
   GoogleSignin,
   isSuccessResponse,
@@ -42,7 +49,7 @@ const WelcomeScreen: React.FC<
             onFacebookButtonPress()
               .then((userCredential) => {
                 console.log(
-                  `Signed in with Facebook for ${userCredential.user.displayName}!`,
+                  `Signed in with Facebook for ${userCredential.user.displayName}!`
                 );
               })
               .catch((err) => {
@@ -61,7 +68,7 @@ const WelcomeScreen: React.FC<
             onGoogleButtonPress()
               .then((userCredential) => {
                 console.log(
-                  `Signed in with Google for ${userCredential.user.displayName}!`,
+                  `Signed in with Google for ${userCredential.user.displayName}!`
                 );
               })
               .catch((err) => {
@@ -87,34 +94,11 @@ const WelcomeScreen: React.FC<
 };
 
 async function onFacebookButtonPress(): Promise<FirebaseAuthTypes.UserCredential> {
-  // Attempt login with permissions
-  const result = await LoginManager.logInWithPermissions([
-    "public_profile",
-    "email",
-  ]);
-
-  if (result.isCancelled) {
-    throw new Error("User cancelled the login process");
+  // If on android we use classic login and if on iOS we have to use limited login due to apple rules
+  if (Platform.OS === "ios") {
+    return await facebookLimitedLoginiOS();
   }
-
-  // Once signed in, get the users AccessToken
-  const data = await AccessToken.getCurrentAccessToken();
-
-  if (data === null) {
-    throw new Error("Something went wrong obtaining access token");
-  }
-  // Create a Firebase credential with the AccessToken
-  const facebookCredential = auth.FacebookAuthProvider.credential(
-    data.accessToken,
-  );
-  console.debug(`access_token: ${data.accessToken}`);
-
-  // Sign-in the user with the credential
-  const firebaseUserCredential =
-    await auth().signInWithCredential(facebookCredential);
-  const firebaseJwt = await firebaseUserCredential.user.getIdToken();
-  console.log(`firebaseUserCredential: ${firebaseJwt}`);
-  return firebaseUserCredential;
+  return await facebookClassicLogin();
 }
 
 async function onGoogleButtonPress(): Promise<FirebaseAuthTypes.UserCredential> {
@@ -126,7 +110,7 @@ async function onGoogleButtonPress(): Promise<FirebaseAuthTypes.UserCredential> 
   if (isSuccessResponse(response)) {
     // Create a Google credential with the token
     const googleCredential = auth.GoogleAuthProvider.credential(
-      response.data.idToken,
+      response.data.idToken
     );
 
     // Sign-in the user with the credential
