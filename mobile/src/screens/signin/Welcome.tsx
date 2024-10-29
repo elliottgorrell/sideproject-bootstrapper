@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   StyleSheet,
   SafeAreaView,
@@ -6,20 +6,20 @@ import {
   Pressable,
   Text,
   Platform,
-} from "react-native";
-import type { StackScreenProps } from "@react-navigation/stack";
-import { Button } from "@/components/button";
-import type { AuthStackParamList } from "@/navigation/authStack";
-import auth, { type FirebaseAuthTypes } from "@react-native-firebase/auth";
-import { facebookClassicLogin, facebookLimitedLoginiOS } from "@/lib/facebook";
+} from 'react-native';
+import type { StackScreenProps } from '@react-navigation/stack';
+import { Button } from '@/components/button';
+import type { AuthStackParamList } from '@/navigation/authStack';
+import auth, { type FirebaseAuthTypes } from '@react-native-firebase/auth';
+import { facebookClassicLogin, facebookLimitedLoginiOS } from '@/lib/facebook';
 import {
   GoogleSignin,
   isSuccessResponse,
-} from "@react-native-google-signin/google-signin";
-import tw from "@/lib/tailwind";
+} from '@react-native-google-signin/google-signin';
+import tw from '@/lib/tailwind';
 
 const WelcomeScreen: React.FC<
-  StackScreenProps<AuthStackParamList, "Welcome">
+  StackScreenProps<AuthStackParamList, 'Welcome'>
 > = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
@@ -31,19 +31,19 @@ const WelcomeScreen: React.FC<
           text="EMAIL"
           style={styles.button}
           icon={{
-            name: "envelope",
-            type: "FontAwesome5",
+            name: 'envelope',
+            type: 'FontAwesome5',
           }}
           onPress={() => {
-            navigation.navigate("SignUpEmail");
+            navigation.navigate('SignUpEmail');
           }}
         />
         <Button
           text="FACEBOOK"
           style={styles.button}
           icon={{
-            name: "facebook",
-            type: "FontAwesome5",
+            name: 'facebook',
+            type: 'FontAwesome5',
           }}
           onPress={() => {
             onFacebookButtonPress()
@@ -61,8 +61,8 @@ const WelcomeScreen: React.FC<
           text="GOOGLE"
           style={styles.button}
           icon={{
-            name: "google",
-            type: "FontAwesome5",
+            name: 'google',
+            type: 'FontAwesome5',
           }}
           onPress={() => {
             onGoogleButtonPress()
@@ -82,7 +82,7 @@ const WelcomeScreen: React.FC<
         <Pressable
           style={styles.loginContainer}
           onPress={() => {
-            navigation.navigate("SignInEmail");
+            navigation.navigate('SignInEmail');
           }}
         >
           <Text style={styles.textLogin}> Existing member?</Text>
@@ -95,7 +95,7 @@ const WelcomeScreen: React.FC<
 
 async function onFacebookButtonPress(): Promise<FirebaseAuthTypes.UserCredential> {
   // If on android we use classic login and if on iOS we have to use limited login due to apple rules
-  if (Platform.OS === "ios") {
+  if (Platform.OS === 'ios') {
     return await facebookLimitedLoginiOS();
   }
   return await facebookClassicLogin();
@@ -116,16 +116,16 @@ async function onGoogleButtonPress(): Promise<FirebaseAuthTypes.UserCredential> 
     // Sign-in the user with the credential
     return await auth().signInWithCredential(googleCredential);
   } else {
-    throw new Error("User cancelled google signin");
+    throw new Error('User cancelled google signin');
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "fff",
-    alignItems: "center",
-    justifyContent: "space-between",
+    backgroundColor: 'fff',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
 
   button: {
@@ -134,25 +134,25 @@ const styles = StyleSheet.create({
 
   text: {
     marginBottom: 20,
-    alignSelf: "center",
+    alignSelf: 'center',
   },
 
   buttonsContainer: {
-    width: "80%",
-    justifyContent: "center",
+    width: '80%',
+    justifyContent: 'center',
     flexGrow: 2,
   },
 
   textLogin: {
-    alignSelf: "center",
+    alignSelf: 'center',
   },
 
   loginContainer: {
-    flexDirection: "row",
+    flexDirection: 'row',
   },
 
   buttonLogin: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginLeft: 5,
   },
 });

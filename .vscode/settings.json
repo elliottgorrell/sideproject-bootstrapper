@@ -8,36 +8,19 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "[github-actions-workflow]": {
-    "editor.defaultFormatter": "redhat.vscode-yaml"
-  },
   "editor.formatOnSave": true,
-  "rust-analyzer.check.command": "clippy",
-  "rust-analyzer.linkedProjects": [
-    "backend/app/Cargo.toml",
-    "backend/scripts/Cargo.toml",
-  ],
-  "eslint.format.enable": true,
   "eslint.workingDirectories": [
     "./mobile"
   ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
   "[firestorerules]": {
     "editor.defaultFormatter": "ChFlick.firecode"
   },
   "[terraform]": {
     "editor.defaultFormatter": "hashicorp.terraform"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-  },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "eslint.useFlatConfig": true,
   "tailwindCSS.classAttributes": [
