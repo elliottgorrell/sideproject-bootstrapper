@@ -57,7 +57,7 @@ module.exports = ({ config }) => {
             appID: secrets.fbAppId,
             clientToken: secrets.fbClientToken,
             displayName: config.name,
-            scheme: `fb${config.fbAppId}`,
+            scheme: `fb${secrets.fbAppId}`,
           },
         ],
       ],

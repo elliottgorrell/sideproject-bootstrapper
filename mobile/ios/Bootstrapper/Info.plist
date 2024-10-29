@@ -33,7 +33,7 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>com.googleusercontent.apps.672792377038-tisiq0pahlet48lpjsjprv6j49u9oqc2</string>
+          <string>com.googleusercontent.apps.640647424246-qttllseubs1v6c4bu8ubbnlbdrg30be4</string>
         </array>
       </dict>
       <dict>
@@ -45,7 +45,7 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>fbundefined</string>
+          <string>fb861887296091470</string>
         </array>
       </dict>
     </array>
@@ -54,13 +54,13 @@
     <key>FacebookAdvertiserIDCollectionEnabled</key>
     <false/>
     <key>FacebookAppID</key>
-    <string>1562502727897221</string>
+    <string>861887296091470</string>
     <key>FacebookAutoInitEnabled</key>
     <false/>
     <key>FacebookAutoLogAppEventsEnabled</key>
     <false/>
     <key>FacebookClientToken</key>
-    <string>d05c5648250f63f635063e7e154c3915</string>
+    <string>f8ef8894078123a22bd0d1fe484ab275</string>
     <key>FacebookDisplayName</key>
     <string>Bootstrapper</string>
     <key>LSApplicationQueriesSchemes</key>
