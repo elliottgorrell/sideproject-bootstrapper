@@ -22,7 +22,10 @@
 
 13. Bootstrap a gcloud project with firebase setup including auth (email and social signin), a firestore db and a storage bucket. `cd infra && terraform init && terraform apply -var-file="vars.tfvars.json"`
 14. Manual steps are required to finish oauth setup for FB and Google
-    - Google: Go to firebase console > Authentication > Sign-in Method and enable the google sign in provider
+    - Google
+      - Go to firebase console > Authentication > Sign-in Method and enable the google sign in provider
+      - Go to firebase project settings and add the sha1 key for development to the android app. It can be genereated with `cd android && ./gradlew signingReport`
     - FB: Go to firebase console > Authentication > Sign-in Method and grab the oauth url for FB. Then go to the meta developer portal and add this url to the allowlist for oauth urls (should be in setting for login usecase)
 15. Grab the config files for ios and android to setup the firebase react native sdk. The GoogleService-Info.plist and google-services.json files can be downloaded from the [firebase console](https://console.firebase.google.com). They will go inside the root of the `mobile` folder
-16. `cd mobile && npm i && npm run clean && npm run ios`
+16. Add a value into `mobile/.env` `EXPO_PUBLIC_GOOGLE_WEB_ID=<>`. The value can be retrieved from `google-services.json` it will be **client_type: 3**
+17. `cd mobile && npm i && npm run clean && npm run ios`

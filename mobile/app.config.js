@@ -11,6 +11,10 @@ function throwIfNotSet(varName) {
   return envVar;
 }
 
+// Env Vars needed in the app
+// You need this for google sign in to work on android
+throwIfNotSet("EXPO_PUBLIC_GOOGLE_WEB_ID"),
+
 module.exports = ({ config }) => {
   const secrets = {
     fbAppId: throwIfNotSet("FB_APP_ID"),
