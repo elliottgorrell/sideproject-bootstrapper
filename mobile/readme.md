@@ -26,3 +26,7 @@ For example I encountered the app crashing when i tried ot install the preview n
 `npx expo run:ios --configuration Release`
 
 This sometimes reveals issues related to release configuration
+
+## Speeding up compile time
+
+Ccache is enabled and will drastically speed up your ios compile times after running a `npm run clean` and clearing out local build cache. For it to work you need to have ccache installed. On mac `brew install ccache`. You can check its working using `ccache -s`
