@@ -1,19 +1,19 @@
-import React from "react";
-import { StyleSheet, SafeAreaView, View, Text } from "react-native";
-import type { StackScreenProps } from "@react-navigation/stack";
-import { Button } from "@/components/button";
-import type { OnboardingStackParamList } from "@/navigation/onboardingStack";
-import Svg, { Path, G, Rect } from "react-native-svg";
-import tw from "@/lib/tailwind";
+import React from 'react';
+import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
+import type { StackScreenProps } from '@react-navigation/stack';
+import { Button } from '@/components/ui';
+import type { OnboardingStackParamList } from '@/navigation/onboardingStack';
+import Svg, { Path, G, Rect } from 'react-native-svg';
+import tw from '@/lib/tailwind';
 
 const WelcomeScreen: React.FC<
-  StackScreenProps<OnboardingStackParamList, "Welcome">
+  StackScreenProps<OnboardingStackParamList, 'Welcome'>
 > = ({ navigation }) => {
   const totalSteps = 2;
   const currentStep = 1;
 
   const completeStage = (): void => {
-    navigation.navigate("Completion");
+    navigation.navigate('Completion');
   };
 
   return (
@@ -55,7 +55,7 @@ const WelcomeScreen: React.FC<
                573.17 629.76 665.76 520.76
                859.76 629.76 993.05 519.76
                1146.35 629.76 h 110 V 1459.76 H -286.59 Z"
-              fill={tw.color("secondary-700")}
+              fill={tw.color('secondary-700')}
             />
             <Path
               d="M -286.59 255.00 S -153.29 33.00
@@ -64,7 +64,7 @@ const WelcomeScreen: React.FC<
                573.17 255.00 584.76 137.50
                859.76 255.00 993.05 87.00
                1146.35 255.00 h 110 V -600 H -286.59 Z"
-              fill={tw.color("neutral-500")}
+              fill={tw.color('neutral-500')}
             />
           </G>
         </Svg>
@@ -73,7 +73,7 @@ const WelcomeScreen: React.FC<
       <View
         style={{
           flex: 1,
-          alignItems: "center",
+          alignItems: 'center',
           marginHorizontal: 24,
           marginVertical: 24,
         }}
@@ -97,13 +97,13 @@ const WelcomeScreen: React.FC<
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   svgContainer: {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
@@ -111,9 +111,9 @@ const styles = StyleSheet.create({
   },
 
   imageOverlay: {
-    backgroundColor: "rgba(128, 128, 128, 0.7)",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: 'rgba(128, 128, 128, 0.7)',
+    justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: 50,
   },
 
@@ -123,34 +123,34 @@ const styles = StyleSheet.create({
 
   text: {
     marginBottom: 20,
-    alignSelf: "center",
+    alignSelf: 'center',
   },
 
   subHeading: {
     marginTop: 20,
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 20,
   },
 
   buttonsContainer: {
-    width: "80%",
-    justifyContent: "center",
+    width: '80%',
+    justifyContent: 'center',
   },
 
   touchableOpacity: {
     marginTop: 70,
-    alignItems: "center",
+    alignItems: 'center',
   },
   selectedTouchableOpacity: {
-    backgroundColor: "fff",
+    backgroundColor: 'fff',
   },
   unselectedTouchableOpacity: {
-    backgroundColor: "fff",
+    backgroundColor: 'fff',
   },
 
   progressContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
     paddingVertical: 20,
     zIndex: 1,
   },
@@ -158,22 +158,22 @@ const styles = StyleSheet.create({
     width: 10,
     height: 10,
     borderRadius: 5,
-    backgroundColor: "#e0e0e0",
+    backgroundColor: '#e0e0e0',
     marginHorizontal: 5,
   },
   activeStep: {
-    backgroundColor: "#3C1053",
+    backgroundColor: '#3C1053',
   },
   inactiveStep: {
-    backgroundColor: "#e0e0e0",
+    backgroundColor: '#e0e0e0',
   },
 
   whiteBox: {
-    width: "100%",
-    height: "80%",
-    backgroundColor: "white",
-    alignSelf: "center",
-    shadowColor: "#000",
+    width: '100%',
+    height: '80%',
+    backgroundColor: 'white',
+    alignSelf: 'center',
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2,

@@ -1,26 +1,26 @@
-import React from "react";
-import { View, SafeAreaView, Pressable, Text } from "react-native";
-import { Button, TextInput } from "@/components";
-import type { StackScreenProps } from "@react-navigation/stack";
-import type { AuthStackParamList } from "@/navigation/authStack";
-import tw from "@/lib/tailwind";
-import auth from "@react-native-firebase/auth";
+import React from 'react';
+import { View, SafeAreaView, Pressable, Text } from 'react-native';
+import { Button, TextInput } from '@/components/ui';
+import type { StackScreenProps } from '@react-navigation/stack';
+import type { AuthStackParamList } from '@/navigation/authStack';
+import tw from '@/lib/tailwind';
+import auth from '@react-native-firebase/auth';
 
 const SignInScreenEmail: React.FC<
-  StackScreenProps<AuthStackParamList, "SignInEmail">
+  StackScreenProps<AuthStackParamList, 'SignInEmail'>
 > = ({ navigation }): React.JSX.Element => {
   const [value, setValue] = React.useState({
-    email: "",
-    password: "",
-    error: "",
+    email: '',
+    password: '',
+    error: '',
   });
 
   function SignIn(): void {
     async function SignInPromise(): Promise<void> {
-      if (value.email === "" || value.password === "") {
+      if (value.email === '' || value.password === '') {
         setValue({
           ...value,
-          error: "Email and password are mandatory.",
+          error: 'Email and password are mandatory.',
         });
         return;
       }
@@ -28,7 +28,7 @@ const SignInScreenEmail: React.FC<
       await auth().signInWithEmailAndPassword(value.email, value.password);
     }
     SignInPromise().catch((err) => {
-      const error = err instanceof Error ? err.message : "Unexpected error";
+      const error = err instanceof Error ? err.message : 'Unexpected error';
       setValue({
         ...value,
         error,
@@ -43,7 +43,7 @@ const SignInScreenEmail: React.FC<
         <Text style={tw`text-sm  font-extrabold text-gray-500 self-center`}>
           Please sign in to continue
         </Text>
-        {!(value.error === "") && (
+        {!(value.error === '') && (
           <Text
             style={tw`bg-red-100 border border-red-400 text-red-700 px-4 py-3`}
           >
@@ -72,7 +72,7 @@ const SignInScreenEmail: React.FC<
         <Pressable
           style={tw`flex-row gap-2`}
           onPress={() => {
-            navigation.navigate("Welcome");
+            navigation.navigate('Welcome');
           }}
         >
           <Text>{"Don't have an account?"}</Text>

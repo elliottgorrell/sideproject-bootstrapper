@@ -1,7 +1,7 @@
-import { useState, useEffect, type SetStateAction, type Dispatch } from "react";
-import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth";
-import { getUserMetadata, createUserMetadata } from "@/db/user";
-import { type User, LoggedOutUser } from "@/types/user";
+import { useState, useEffect, type SetStateAction, type Dispatch } from 'react';
+import auth, { type FirebaseAuthTypes } from '@react-native-firebase/auth';
+import { getUserMetadata, createUserMetadata } from '@/db/user';
+import { type User, LoggedOutUser } from '@/types/user';
 
 export function useAuthentication(): {
   user: User;
@@ -11,11 +11,11 @@ export function useAuthentication(): {
 
   useEffect(() => {
     const authStateChanged = async (
-      firebaseUser: FirebaseAuthTypes.User | null,
-    ) => {
-      console.debug("Auth State Changed");
+      firebaseUser: FirebaseAuthTypes.User | null
+    ): Promise<void> => {
+      console.debug('Auth State Changed');
       if (firebaseUser === null) {
-        console.debug("User Logged Out");
+        console.debug('User Logged Out');
         // User is signed out
         setUser(LoggedOutUser);
         return;
@@ -25,12 +25,12 @@ export function useAuthentication(): {
       if (userMetadata == null) {
         userMetadata = await createUserMetadata(firebaseUser.uid);
       }
-      let newUser = {
+      const newUser = {
         user: firebaseUser as FirebaseAuthTypes.UserInfo,
         metadata: userMetadata,
       };
       setUser(newUser);
-      console.debug("User Logged In");
+      console.debug('User Logged In');
     };
 
     const unsubscribe = auth().onAuthStateChanged((firebaseUser) => {

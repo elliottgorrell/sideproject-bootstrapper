@@ -60,14 +60,14 @@ export async function facebookLimitedLoginiOS(): Promise<FirebaseAuthTypes.UserC
   );
 
   if (result.isCancelled) {
-    throw 'User cancelled the login process';
+    throw new Error('User cancelled the login process');
   }
 
   // Once signed in, get the users AuthenticationToken
   const data = await AuthenticationToken.getAuthenticationTokenIOS();
 
-  if (!data) {
-    throw 'Something went wrong obtaining authentication token';
+  if (data === null) {
+    throw new Error('Something went wrong obtaining authentication token');
   }
   // Create a Firebase credential with the AccessToken
   const facebookCredential = auth.FacebookAuthProvider.credential(

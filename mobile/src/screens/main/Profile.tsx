@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
 import { View, Text, Image } from 'react-native';
-import { Button, TextInput } from '@/components';
+import { Button, TextInput } from '@/components/ui';
 import tw from '@/lib/tailwind';
-import { CurrentUserContext, CurrentUserContextType } from '@/context';
+import { CurrentUserContext, type CurrentUserContextType } from '@/context';
 import auth from '@react-native-firebase/auth';
-import { updateUserMetadata } from '@/db/user';
+import { updateUserMetadata, updateUserInfo } from '@/db/user';
 import { OnboardingStage } from '@/types/user';
-import { updateUserInfo } from '@/db/user';
 const signOutUserSync = (): void => {
   async function signOutUser(): Promise<void> {
     await auth().signOut();
@@ -61,7 +60,9 @@ export default function Profile(): React.JSX.Element {
           <Button
             onPress={() => {
               updateUserInfo({ displayName: newName }, { user, setUser }).catch(
-                (e) => console.error(e)
+                (e) => {
+                  console.error(e);
+                }
               );
             }}
             text="Update Display Name"
@@ -77,9 +78,6 @@ export default function Profile(): React.JSX.Element {
         />
         <Button
           onPress={() => {
-            if (user === null) {
-              return;
-            }
             resetOnboarding({ user, setUser });
           }}
           text="Restart Onboarding"

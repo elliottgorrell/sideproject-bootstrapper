@@ -1,42 +1,42 @@
-import React from "react";
-import { View, SafeAreaView, Pressable, Text } from "react-native";
-import tw from "@/lib/tailwind";
-import { Button, TextInput } from "@/components";
-import type { StackScreenProps } from "@react-navigation/stack";
-import auth from "@react-native-firebase/auth";
+import React from 'react';
+import { View, SafeAreaView, Pressable, Text } from 'react-native';
+import tw from '@/lib/tailwind';
+import { Button, TextInput } from '@/components/ui';
+import type { StackScreenProps } from '@react-navigation/stack';
+import auth from '@react-native-firebase/auth';
 
-import type { AuthStackParamList } from "@/navigation/authStack";
+import type { AuthStackParamList } from '@/navigation/authStack';
 
 const SignUpScreen: React.FC<
-  StackScreenProps<AuthStackParamList, "SignUpEmail">
+  StackScreenProps<AuthStackParamList, 'SignUpEmail'>
 > = ({ navigation }) => {
   const [value, setValue] = React.useState({
-    name: "",
-    email: "",
-    password: "",
-    error: "",
+    name: '',
+    email: '',
+    password: '',
+    error: '',
   });
 
   function signUp(): void {
     async function signUpPromise(): Promise<void> {
-      if (value.email === "" || value.password === "" || value.name === "") {
+      if (value.email === '' || value.password === '' || value.name === '') {
         setValue({
           ...value,
-          error: "All fields are mandatory.",
+          error: 'All fields are mandatory.',
         });
         return;
       }
 
       const userCredential = await auth().createUserWithEmailAndPassword(
         value.email,
-        value.password,
+        value.password
       );
       await userCredential.user.updateProfile({
         displayName: value.name,
       });
     }
     signUpPromise().catch((err) => {
-      const error = err instanceof Error ? err.message : "Unexpected error";
+      const error = err instanceof Error ? err.message : 'Unexpected error';
       setValue({
         ...value,
         error,
@@ -52,7 +52,7 @@ const SignUpScreen: React.FC<
           Please sign up to continue
         </Text>
 
-        {!(value.error === "") && (
+        {!(value.error === '') && (
           <Text
             style={tw`bg-red-100 border border-red-400 text-red-700 px-4 py-3`}
           >
@@ -92,7 +92,7 @@ const SignUpScreen: React.FC<
         <Pressable
           style={tw`flex-row gap-2`}
           onPress={() => {
-            navigation.navigate("SignInEmail");
+            navigation.navigate('SignInEmail');
           }}
         >
           <Text> Existing member?</Text>

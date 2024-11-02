@@ -13,9 +13,9 @@ import {
   Octicons,
   SimpleLineIcons,
   Zocial,
-} from "@expo/vector-icons";
+} from '@expo/vector-icons';
 
-export type IconNameMap = {
+export interface IconNameMap {
   AntDesign: keyof typeof AntDesign.glyphMap;
   Entypo: keyof typeof Entypo.glyphMap;
   EvilIcons: keyof typeof EvilIcons.glyphMap;
@@ -30,18 +30,18 @@ export type IconNameMap = {
   Octicons: keyof typeof Octicons.glyphMap;
   SimpleLineIcons: keyof typeof SimpleLineIcons.glyphMap;
   Zocial: keyof typeof Zocial.glyphMap;
-};
+}
 
 // Define IconType based on the keys of IconNameMap
 export type IconType = keyof IconNameMap;
 
 // Create a type that maps IconProps based on IconType
-export type IconProps<T extends IconType = IconType> = {
+export interface IconProps<T extends IconType = IconType> {
   type: T;
   name: IconNameMap[T];
   size?: number;
   color?: string;
-};
+}
 
 /**
  * An easy to use wrapper around expo-vector-icons
@@ -52,61 +52,61 @@ export const Icon = <T extends IconType>({
   size,
   color,
 }: IconProps<T>) => {
-  if (type === "AntDesign") {
+  if (type === 'AntDesign') {
     return <AntDesign name={name as any} size={size} color={color} />;
   }
 
-  if (type === "Entypo") {
+  if (type === 'Entypo') {
     return <Entypo name={name as any} size={size} color={color} />;
   }
 
-  if (type === "EvilIcons") {
+  if (type === 'EvilIcons') {
     return <EvilIcons name={name as any} size={size} color={color} />;
   }
 
-  if (type === "Feather") {
+  if (type === 'Feather') {
     return <Feather name={name as any} size={size} color={color} />;
   }
 
-  if (type === "FontAwesome") {
+  if (type === 'FontAwesome') {
     return <FontAwesome name={name as any} size={size} color={color} />;
   }
 
-  if (type === "FontAwesome5") {
+  if (type === 'FontAwesome5') {
     return <FontAwesome5 name={name as any} size={size} color={color} />;
   }
 
-  if (type === "Fontisto") {
+  if (type === 'Fontisto') {
     return <Fontisto name={name as any} size={size} color={color} />;
   }
 
-  if (type === "Foundation") {
+  if (type === 'Foundation') {
     return <Foundation name={name as any} size={size} color={color} />;
   }
 
-  if (type === "Ionicons") {
+  if (type === 'Ionicons') {
     return <Ionicons name={name as any} size={size} color={color} />;
   }
 
-  if (type === "MaterialCommunityIcons") {
+  if (type === 'MaterialCommunityIcons') {
     return (
       <MaterialCommunityIcons name={name as any} size={size} color={color} />
     );
   }
 
-  if (type === "MaterialIcons") {
+  if (type === 'MaterialIcons') {
     return <MaterialIcons name={name as any} size={size} color={color} />;
   }
 
-  if (type === "Octicons") {
+  if (type === 'Octicons') {
     return <Octicons name={name as any} size={size} color={color} />;
   }
 
-  if (type === "SimpleLineIcons") {
+  if (type === 'SimpleLineIcons') {
     return <SimpleLineIcons name={name as any} size={size} color={color} />;
   }
 
-  if (type === "Zocial") {
+  if (type === 'Zocial') {
     return <Zocial name={name as any} size={size} color={color} />;
   }
 

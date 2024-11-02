@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import MainStack from "./mainStack";
-import AuthStack from "./authStack";
-import OnboardingStack from "./onboardingStack";
-import { LoggedOutUser, OnboardingStage } from "@/types/user";
-import { CurrentUserContext } from "@/context";
+import React, { useContext } from 'react';
+import MainStack from './mainStack';
+import AuthStack from './authStack';
+import OnboardingStack from './onboardingStack';
+import { LoggedOutUser, OnboardingStage } from '@/types/user';
+import { CurrentUserContext } from '@/context';
 
 export default function RootNavigation(): React.JSX.Element {
   const { user } = useContext(CurrentUserContext);

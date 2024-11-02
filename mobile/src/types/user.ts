@@ -1,4 +1,4 @@
-import { FirebaseAuthTypes } from "@react-native-firebase/auth";
+import type { FirebaseAuthTypes } from '@react-native-firebase/auth';
 
 export interface User {
   user: FirebaseAuthTypes.UserInfo;
@@ -17,11 +17,11 @@ export enum OnboardingStage {
 
 export const LoggedOutUser: User = {
   user: {
-    uid: "0",
-    providerId: "0",
+    uid: '0',
+    providerId: '0',
   },
   metadata: {
-    uid: "0",
+    uid: '0',
     onboardingStage: OnboardingStage.Welcome,
   },
 };
