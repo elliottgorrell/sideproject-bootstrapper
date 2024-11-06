@@ -7,8 +7,6 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import tw from '@/lib/tailwind';
 import { Icon } from '@/components/ui';
 import type { Ionicons } from '@expo/vector-icons';
-const Stack = createStackNavigator();
-const Tab = createMaterialTopTabNavigator();
 
 type tabIconsType = Record<string, keyof typeof Ionicons.glyphMap>;
 
@@ -18,9 +16,18 @@ const tabIcons: tabIconsType = {
   Profile: 'person',
 };
 
+export interface MainTabNavigatorParamList {
+  Home: undefined;
+  Secondary: { message: string };
+  Profile: undefined;
+  [key: string]: undefined | { message: string };
+}
+
+const Stack = createStackNavigator();
+const Tab = createMaterialTopTabNavigator<MainTabNavigatorParamList>();
+
 export default function MainStack(): React.JSX.Element {
   const insets = useSafeAreaInsets();
-
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -61,8 +68,12 @@ export default function MainStack(): React.JSX.Element {
               })}
             >
               <Tab.Screen name="Home" component={Home} />
-              <Tab.Screen name={'Secondary'} component={Secondary} />
-              <Tab.Screen name={'Profile'} component={Profile} />
+              <Tab.Screen
+                name="Secondary"
+                component={Secondary}
+                initialParams={{ message: 'Hell World! (From Params)' }}
+              />
+              <Tab.Screen name="Profile" component={Profile} />
             </Tab.Navigator>
           )}
         </Stack.Screen>
