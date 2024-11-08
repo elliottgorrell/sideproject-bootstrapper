@@ -4,7 +4,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Home, Secondary, Profile } from '@/screens/main';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import tw from '@/lib/tailwind';
 import { Icon } from '@/components/ui';
 import type { Ionicons } from '@expo/vector-icons';
 
@@ -38,13 +37,13 @@ export default function MainStack(): React.JSX.Element {
           {() => (
             <Tab.Navigator
               screenOptions={({ route }) => ({
-                tabBarInactiveTintColor: tw.color('neutral-200'),
-                tabBarActiveTintColor: tw.color('neutral-500'),
+                tabBarInactiveTintColor: '#FDD6BD',
+                tabBarActiveTintColor: '#F27059',
                 tabBarIndicatorStyle: {
                   backgroundColor: 'transparent',
                 },
                 tabBarStyle: {
-                  backgroundColor: tw.color('white'),
+                  backgroundColor: '#fff',
                   paddingTop: insets.top,
                   paddingLeft: insets.left,
                   paddingRight: insets.right,

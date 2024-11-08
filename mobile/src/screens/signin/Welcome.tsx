@@ -12,7 +12,6 @@ import { Button } from '@/components/ui';
 import type { AuthStackParamList } from '@/navigation/authStack';
 import type { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { facebookClassicLogin, facebookLimitedLoginiOS } from '@/lib/facebook';
-import tw from '@/lib/tailwind';
 import { googleLogin } from '@/lib/google';
 
 const WelcomeScreen: React.FC<
@@ -20,9 +19,7 @@ const WelcomeScreen: React.FC<
 > = ({ navigation }) => (
   <SafeAreaView style={styles.container}>
     <View style={styles.buttonsContainer}>
-      <Text style={tw`text-3xl font-extrabold self-center`}>
-        Get Started...
-      </Text>
+      <Text style={styles.title}>Get Started...</Text>
       <Button
         text="EMAIL"
         style={styles.button}
@@ -130,6 +127,12 @@ const styles = StyleSheet.create({
   buttonLogin: {
     fontWeight: 'bold',
     marginLeft: 5,
+  },
+
+  title: {
+    fontSize: 24,
+    fontWeight: '800',
+    alignSelf: 'center',
   },
 });
 

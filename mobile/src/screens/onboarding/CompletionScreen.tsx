@@ -9,11 +9,10 @@ import { updateUserMetadata } from '@/db/user';
 import Svg, { Path, G, Rect } from 'react-native-svg';
 import LottieView from 'lottie-react-native';
 import SuccessAnimation from '@/./assets/animations/Success.json';
-import tw from '@/lib/tailwind';
 
 const CompletionScreen: React.FC<
   StackScreenProps<OnboardingStackParamList, 'Completion'>
-> = ({ navigation }) => {
+> = () => {
   const currUserContext = useContext(CurrentUserContext);
 
   const completeStage = (): void => {
@@ -47,7 +46,7 @@ const CompletionScreen: React.FC<
           573.17 709.76 706.47 700.76
           859.76 709.76 894.35 666.76
           1146.35 709.76 h 110 V 1459.76 H -286.59 Z"
-              fill={tw.color('neutral-500')}
+              fill="#F27059" // equivalent to Tailwind's `neutral-500`
             />
             <Path
               d="M -286.59 175.00 S -153.29 56.00
@@ -56,7 +55,7 @@ const CompletionScreen: React.FC<
           573.17 175.00 696.76 79.00
           859.76 175.00 907.35 97.50
           1146.35 175.00 h 110 V -600 H -286.59 Z"
-              fill={tw.color('secondary-700')}
+              fill="#561768" // equivalent to Tailwind's `secondary-700`
             />
           </G>
         </Svg>
@@ -86,6 +85,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
+  svgContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+
   animationContainer: {
     height: '85%',
     alignItems: 'center',
@@ -97,21 +104,13 @@ const styles = StyleSheet.create({
     height: 400,
   },
 
-  button: {
-    marginTop: 20,
-  },
-
-  text: {
-    marginTop: 20,
-    alignSelf: 'center',
-    color: 'black',
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-
   buttonsContainer: {
     width: '80%',
     justifyContent: 'center',
+  },
+
+  button: {
+    marginTop: 20,
   },
 
   progressContainer: {
@@ -120,6 +119,7 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     zIndex: 1,
   },
+
   progressStep: {
     width: 10,
     height: 10,
@@ -127,19 +127,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#e0e0e0',
     marginHorizontal: 5,
   },
+
   activeStep: {
-    backgroundColor: '#3C1053',
-  },
-  inactiveStep: {
-    backgroundColor: '#e0e0e0',
+    backgroundColor: '#3C1053', // equivalent to a deep purple color
   },
 
-  svgContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+  inactiveStep: {
+    backgroundColor: '#e0e0e0', // equivalent to a light gray color
   },
 });
 

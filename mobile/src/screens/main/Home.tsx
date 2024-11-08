@@ -1,11 +1,23 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import tw from '@/lib/tailwind';
+import { View, Text, StyleSheet } from 'react-native';
 
 export default function Home(): React.JSX.Element {
   return (
-    <View style={tw`flex-1 flex-col bg-white items-center`}>
-      <Text style={tw`text-3xl font-extrabold`}>Hello World</Text>
+    <View style={styles.container}>
+      <Text style={styles.text}>Hello World</Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: '#FFFFFF', // equivalent to Tailwind's `bg-white`
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 24, // equivalent to Tailwind's `text-3xl`
+    fontWeight: '800', // equivalent to Tailwind's `font-extrabold`
+  },
+});

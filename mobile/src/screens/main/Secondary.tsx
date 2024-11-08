@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import tw from '@/lib/tailwind';
+import { View, Text, StyleSheet } from 'react-native';
 import type { MaterialTopTabScreenProps } from '@react-navigation/material-top-tabs';
 import type { MainTabNavigatorParamList } from '@/navigation/mainStack';
 
@@ -10,11 +9,22 @@ type ScreenProps = MaterialTopTabScreenProps<
 >;
 
 const Messages = (props: ScreenProps): React.JSX.Element => (
-  <View style={tw`flex-1 flex-col bg-white items-center`}>
-    <Text style={tw`text-3xl font-extrabold`}>
-      {props.route.params.message}
-    </Text>
+  <View style={styles.container}>
+    <Text style={styles.text}>{props.route.params.message}</Text>
   </View>
 );
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: 'white',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 24,
+    fontWeight: '800',
+  },
+});
 
 export default Messages;

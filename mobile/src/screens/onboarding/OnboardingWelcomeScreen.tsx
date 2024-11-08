@@ -4,7 +4,6 @@ import type { StackScreenProps } from '@react-navigation/stack';
 import { Button } from '@/components/ui';
 import type { OnboardingStackParamList } from '@/navigation/onboardingStack';
 import Svg, { Path, G, Rect } from 'react-native-svg';
-import tw from '@/lib/tailwind';
 
 const WelcomeScreen: React.FC<
   StackScreenProps<OnboardingStackParamList, 'Welcome'>
@@ -55,7 +54,7 @@ const WelcomeScreen: React.FC<
                573.17 629.76 665.76 520.76
                859.76 629.76 993.05 519.76
                1146.35 629.76 h 110 V 1459.76 H -286.59 Z"
-              fill={tw.color('secondary-700')}
+              fill={'#561768'}
             />
             <Path
               d="M -286.59 255.00 S -153.29 33.00
@@ -64,20 +63,13 @@ const WelcomeScreen: React.FC<
                573.17 255.00 584.76 137.50
                859.76 255.00 993.05 87.00
                1146.35 255.00 h 110 V -600 H -286.59 Z"
-              fill={tw.color('neutral-500')}
+              fill={'#F27059'}
             />
           </G>
         </Svg>
       </View>
 
-      <View
-        style={{
-          flex: 1,
-          alignItems: 'center',
-          marginHorizontal: 24,
-          marginVertical: 24,
-        }}
-      >
+      <View style={styles.contentContainer}>
         <Text style={styles.text}>Welcome</Text>
 
         <View style={styles.whiteBox}>
@@ -108,6 +100,13 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
+  },
+
+  contentContainer: {
+    flex: 1,
+    alignItems: 'center',
+    marginHorizontal: 24,
+    marginVertical: 24,
   },
 
   imageOverlay: {
@@ -162,7 +161,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   activeStep: {
-    backgroundColor: '#3C1053',
+    backgroundColor: '#561768',
   },
   inactiveStep: {
     backgroundColor: '#e0e0e0',

@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 import { Button, TextInput } from '@/components/ui';
-import tw from '@/lib/tailwind';
 import { CurrentUserContext, type CurrentUserContextType } from '@/context';
 import auth from '@react-native-firebase/auth';
 import { updateUserMetadata, updateUserInfo } from '@/db/user';
 import { OnboardingStage } from '@/types/user';
+
 const signOutUserSync = (): void => {
   async function signOutUser(): Promise<void> {
     await auth().signOut();
@@ -32,24 +32,15 @@ export default function Profile(): React.JSX.Element {
   const [newName, setNewName] = React.useState('');
 
   return (
-    <View
-      style={tw`flex-1 flex-col bg-gray-300 items-center gap-5 justify-between`}
-    >
-      <Image
-        source={{ uri: user.user.photoURL }}
-        style={tw`rounded-full aspect-square w-2/6 m-5`}
-      />
+    <View style={styles.container}>
+      <Image source={{ uri: user.user.photoURL }} style={styles.image} />
 
-      <View style={tw`flex-2 bg-white rounded-3xl w-4/5`}>
-        <View
-          style={tw`bg-neutral-500 relative -top-4 py-2 px-5 rounded-3xl self-center`}
-        >
-          <Text style={tw`text-white  text-center`}>Profile</Text>
+      <View style={styles.profileContainer}>
+        <View style={styles.profileHeader}>
+          <Text style={styles.profileHeaderText}>Profile</Text>
         </View>
-        <Text style={tw`text-gray-500 text-center font-extrabold`}>
-          {user.user.displayName}
-        </Text>
-        <View style={tw`m-4 gap-3`}>
+        <Text style={styles.displayName}>{user.user.displayName}</Text>
+        <View style={styles.inputContainer}>
           <TextInput
             placeholder="New Name"
             value={newName}
@@ -70,20 +61,74 @@ export default function Profile(): React.JSX.Element {
         </View>
       </View>
 
-      <View style={tw`flex-1 flex-row items-center gap-5`}>
+      <View style={styles.buttonContainer}>
         <Button
           onPress={signOutUserSync}
           text="Sign Out"
-          style={tw`rounded-3xl`}
+          style={styles.button}
         />
         <Button
           onPress={() => {
             resetOnboarding({ user, setUser });
           }}
           text="Restart Onboarding"
-          style={tw`rounded-3xl`}
+          style={styles.button}
         />
       </View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: '#D1D5DB',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 20,
+  },
+  image: {
+    borderRadius: 50,
+    aspectRatio: 1,
+    width: '33%',
+    margin: 20,
+  },
+  profileContainer: {
+    flex: 2,
+    backgroundColor: 'white',
+    borderRadius: 30,
+    width: '80%',
+  },
+  profileHeader: {
+    backgroundColor: '#F27059',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 30,
+    alignSelf: 'center',
+    position: 'relative',
+    top: -20,
+  },
+  profileHeaderText: {
+    color: 'white',
+    textAlign: 'center',
+  },
+  displayName: {
+    color: '#6B7280', //gray-500
+    textAlign: 'center',
+    fontWeight: '800',
+  },
+  inputContainer: {
+    margin: 20,
+    gap: 10,
+  },
+  buttonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 20,
+  },
+  button: {
+    borderRadius: 30,
+  },
+});
