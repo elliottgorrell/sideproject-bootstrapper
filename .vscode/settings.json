@@ -22,12 +22,5 @@
   "[terraform]": {
     "editor.defaultFormatter": "hashicorp.terraform"
   },
-  "eslint.useFlatConfig": true,
-  "tailwindCSS.classAttributes": [
-    "class",
-    "className",
-    "ngClass",
-    "class:list",
-    "style"
-  ]
+  "eslint.useFlatConfig": true
 }

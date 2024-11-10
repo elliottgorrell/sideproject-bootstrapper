@@ -3,7 +3,6 @@
     "expo.vscode-expo-tools",
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
-    "bradlc.vscode-tailwindcss",
     "naumovs.color-highlight",
     "ms-azuretools.vscode-docker"
   ]
