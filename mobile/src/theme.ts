@@ -325,3 +325,17 @@ export const colors: ColorPalette = {
   teal800: '#115E59',
   teal900: '#134E4A',
 };
+
+type ColorSchemeName = 'light' | 'dark' | null | undefined;
+
+/**
+ * @param mode Pass in the value you got from the useColorScheme() hook
+ * @param lightModeValue
+ * @param darkModeValue
+ * @returns
+ */
+export const darkModeVariant = (
+  mode: ColorSchemeName,
+  lightModeValue: string,
+  darkModeValue: string
+): string => (mode === 'dark' ? darkModeValue : lightModeValue);

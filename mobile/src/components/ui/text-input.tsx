@@ -1,10 +1,11 @@
-import { colors } from '@/theme';
+import { colors, darkModeVariant } from '@/theme';
 import { useState } from 'react';
 import {
   TextInput as DefaultTextInput,
   Platform,
   type TextInputProps,
   StyleSheet,
+  useColorScheme,
 } from 'react-native';
 
 export const TextInput = ({
@@ -12,6 +13,7 @@ export const TextInput = ({
   ...props
 }: TextInputProps) => {
   const [isFocused, setIsFocused] = useState(false);
+  const deviceColorScheme = useColorScheme();
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -28,10 +30,27 @@ export const TextInput = ({
       onEndEditing={handleEndEditing}
       style={[
         styles.inputStyle,
+        {
+          borderColor: darkModeVariant(
+            deviceColorScheme,
+            colors.black,
+            colors.white
+          ),
+          backgroundColor: darkModeVariant(
+            deviceColorScheme,
+            colors.primary100,
+            colors.primary900
+          ),
+          color: darkModeVariant(
+            deviceColorScheme,
+            colors.primary900,
+            colors.primary100
+          ),
+        },
+        props.style,
         isFocused && Platform.OS !== 'web'
           ? { borderColor: colors.blue500 }
           : {},
-        props.style,
       ]}
       placeholderTextColor={placeholderTextColor || colors.primary500}
     />
@@ -41,13 +60,10 @@ export const TextInput = ({
 const styles = StyleSheet.create({
   inputStyle: {
     width: '100%',
-    backgroundColor: colors.primary100, //  dark:bg-neutral-900
     borderWidth: 1,
-    borderColor: colors.black, // dark: white
     opacity: 0.2,
-    borderRadius: 6, // rounded-md
+    borderRadius: 6,
     height: 48,
     paddingHorizontal: 16,
-    color: colors.primary900, // dark:primary50
   },
 });
