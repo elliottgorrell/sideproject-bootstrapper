@@ -59,6 +59,9 @@ export interface ColorPalette {
   danger800: string;
   danger900: string;
 
+  black: string;
+  white: string;
+
   red50: string;
   red100: string;
   red200: string;
@@ -219,6 +222,9 @@ export const colors: ColorPalette = {
   danger700: '#B5435F',
   danger800: '#922A4D',
   danger900: '#781942',
+
+  black: '#000',
+  white: '#fff',
 
   red50: '#FEF2F2',
   red100: '#FEE2E2',

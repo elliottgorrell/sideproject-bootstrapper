@@ -1,15 +1,16 @@
-import { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import {
   Pressable,
-  type PressableProps,
   Text,
   View,
+  StyleSheet,
+  type PressableProps,
   type TextProps,
   type ViewStyle,
 } from 'react-native';
-import { useAppColorScheme } from 'twrnc';
-import tailwind from '@/lib/tailwind';
+import { useColorScheme } from 'react-native';
 import { Icon, type IconProps } from './icon';
+import { colors } from '@/theme';
 
 export type ButtonVariant =
   | 'default'
@@ -25,55 +26,38 @@ interface ButtonProps extends PressableProps {
   selected?: boolean;
 }
 
-const VariantContext = createContext('default');
+const VariantContext = createContext<ButtonVariant>('default');
 
 export const ButtonText = ({ style, children }: TextProps) => {
-  const variant = useContext(VariantContext) as ButtonVariant;
+  const variant = useContext(VariantContext);
 
-  const variants = {
-    default: tailwind`text-neutral-50 dark:text-neutral-900`,
-    success: tailwind`text-green-50`,
-    destructive: tailwind`text-red-50`,
-    warning: tailwind`text-orange-50`,
-    info: tailwind`text-blue-50`,
+  const variantStyles = {
+    default: { color: colors.primary100 },
+    success: { color: colors.green100 },
+    destructive: { color: colors.red50 },
+    warning: { color: colors.warning100 },
+    info: { color: colors.blue100 },
   };
 
   return (
-    <Text style={[tailwind`font-bold`, variants[variant], style]}>
-      {children}
-    </Text>
+    <Text style={[styles.text, variantStyles[variant], style]}>{children}</Text>
   );
 };
 
 export const ButtonIcon = ({ name, type, color, size }: IconProps) => {
-  const [colorScheme] = useAppColorScheme(tailwind);
-  const variant = useContext(VariantContext) as ButtonVariant;
+  const deviceColorScheme = useColorScheme();
+  const variant = useContext(VariantContext);
 
-  const variants = {
-    default: {
-      light: tailwind.color('text-neutral-50'),
-      dark: tailwind.color('text-neutral-900'),
-    },
-    destructive: {
-      light: tailwind.color('text-red-50'),
-      dark: tailwind.color('text-red-50'),
-    },
-    success: {
-      light: tailwind.color('text-green-50'),
-      dark: tailwind.color('text-green-50'),
-    },
-    warning: {
-      light: tailwind.color('text-orange-50'),
-      dark: tailwind.color('text-orange-50'),
-    },
-    info: {
-      light: tailwind.color('text-blue-50'),
-      dark: tailwind.color('text-blue-50'),
-    },
+  const variantColors = {
+    default:
+      deviceColorScheme === 'dark' ? colors.primary900 : colors.primary100,
+    success: colors.green50,
+    destructive: colors.red50,
+    warning: colors.warning100,
+    info: colors.blue50,
   };
 
-  const defaultColor =
-    colorScheme === 'dark' ? variants[variant].dark : variants[variant].light;
+  const defaultColor = variantColors[variant];
 
   return (
     <Icon
@@ -85,9 +69,6 @@ export const ButtonIcon = ({ name, type, color, size }: IconProps) => {
   );
 };
 
-/**
- * React Native button component built with Tailwind CSS
- */
 export const Button = ({
   text,
   icon,
@@ -100,33 +81,33 @@ export const Button = ({
   const [hovered, setHovered] = useState(false);
   const [pressed, setPressed] = useState(false);
 
-  const variants = {
+  const variantStyles = {
     default: {
-      bg: tailwind`bg-neutral-500 dark:bg-neutral-500`,
-      hover: tailwind`bg-neutral-950 dark:bg-neutral-200`,
+      bg: colors.primary500,
+      hover: colors.primary900,
     },
     success: {
-      bg: tailwind`bg-green-600 dark:bg-green-700`,
-      hover: tailwind`bg-green-700 dark:bg-green-800`,
+      bg: colors.green600,
+      hover: colors.green700,
     },
     destructive: {
-      bg: tailwind`bg-red-600 dark:bg-red-700`,
-      hover: tailwind`bg-red-700 dark:bg-red-800`,
+      bg: colors.red600,
+      hover: colors.red700,
     },
     warning: {
-      bg: tailwind`bg-orange-600 dark:bg-orange-700`,
-      hover: tailwind`bg-orange-700 dark:bg-orange-800`,
+      bg: colors.warning600,
+      hover: colors.warning700,
     },
     info: {
-      bg: tailwind`bg-blue-600 dark:bg-blue-700`,
-      hover: tailwind`bg-blue-700 dark:bg-blue-800`,
+      bg: colors.blue600,
+      hover: colors.blue700,
     },
   };
 
   const renderContent = () => {
     if (icon && text) {
       return (
-        <View style={tailwind`flex flex-row items-center gap-2`}>
+        <View style={styles.iconTextContainer}>
           <ButtonIcon {...icon} />
           <ButtonText>{text}</ButtonText>
         </View>
@@ -135,7 +116,7 @@ export const Button = ({
 
     if (icon) {
       return (
-        <View style={tailwind`flex flex-row items-center`}>
+        <View style={styles.iconOnlyContainer}>
           {icon ? <ButtonIcon {...icon} /> : null}
           <>{children}</>
         </View>
@@ -150,29 +131,22 @@ export const Button = ({
       return <ButtonText>{children}</ButtonText>;
     }
 
-    return <>{children}</>;
+    return <>children</>;
   };
 
   return (
     <Pressable
       {...props}
-      onHoverIn={() => {
-        setHovered(true);
-      }}
-      onHoverOut={() => {
-        setHovered(false);
-      }}
-      onPressIn={() => {
-        setPressed(true);
-      }}
-      onPressOut={() => {
-        setPressed(false);
-      }}
+      onHoverIn={() => setHovered(true)}
+      onHoverOut={() => setHovered(false)}
+      onPressIn={() => setPressed(true)}
+      onPressOut={() => setPressed(false)}
       style={[
-        tailwind`h-10 px-4 flex-row gap-2 items-center justify-center rounded-md`,
-        variants[variant].bg,
-        hovered || pressed || selected ? variants[variant].hover : null,
-        // todo: fix ts error
+        styles.button,
+        { backgroundColor: variantStyles[variant].bg },
+        (hovered || pressed || selected) && {
+          backgroundColor: variantStyles[variant].hover,
+        },
         style as ViewStyle,
       ]}
     >
@@ -182,3 +156,27 @@ export const Button = ({
     </Pressable>
   );
 };
+
+const styles = StyleSheet.create({
+  button: {
+    height: 40,
+    paddingHorizontal: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 6,
+    gap: 8,
+  },
+  text: {
+    fontWeight: 'bold',
+  },
+  iconTextContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  iconOnlyContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+});
