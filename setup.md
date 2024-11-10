@@ -11,14 +11,7 @@
 9. Signup for an expo account linked to the app email and create a new project in the web portal. You will then get a popup with the project id.
 10. Add the expo project id into the `mobile/.env`
 11. Fill in `infra/vars.tfvars.json`.
-12. Create a `infra/.env` with the template
-
-    ``` .env
-    billing_account=<google cloud billing account id>
-    project_id=<make up something unique (no idea why this isn't auto generated)>
-    fb_app_id=<fb app id>
-    fb_app_secret=<This can be found in the basic settings of your fb app in meta dev portal>
-    ```
+12. Create a `infra/.env` with the template found at `infra/.env.template`
 
 13. Bootstrap a gcloud project with firebase setup including auth (email and social signin), a firestore db and a storage bucket. `cd infra && terraform init && terraform apply -var-file="vars.tfvars.json"`
 14. Manual steps are required to finish oauth setup for FB and Google
