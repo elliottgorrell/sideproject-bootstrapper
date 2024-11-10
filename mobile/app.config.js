@@ -14,13 +14,13 @@ function throwIfNotSet(varName) {
 // Env Vars needed in the app
 // You need this for google sign in to work on android
 
-(module.exports = ({ config }) => {
+module.exports = ({ config }) => {
   const secrets = {
     fbAppId: throwIfNotSet("FB_APP_ID"),
     fbClientToken: throwIfNotSet("FB_CLIENT_TOKEN"),
     easProjectId: throwIfNotSet("EAS_PROJECT_ID"),
   };
-  throwIfNotSet("EXPO_PUBLIC_GOOGLE_WEB_ID")
+  throwIfNotSet("EXPO_PUBLIC_GOOGLE_WEB_ID");
 
   return {
     expo: {
@@ -73,4 +73,4 @@ function throwIfNotSet(varName) {
       },
     },
   };
-});
+};
