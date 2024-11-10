@@ -7,9 +7,6 @@ import {
   StyleSheet,
 } from 'react-native';
 
-/**
- * React Native text input component built with Tailwind CSS
- */
 export const TextInput = ({
   placeholderTextColor,
   ...props

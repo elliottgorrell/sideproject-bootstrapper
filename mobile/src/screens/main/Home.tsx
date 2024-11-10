@@ -1,3 +1,4 @@
+import { colors } from '@/theme';
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
@@ -13,11 +14,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#FFFFFF', // equivalent to Tailwind's `bg-white`
+    backgroundColor: colors.white,
     alignItems: 'center',
   },
   text: {
-    fontSize: 24, // equivalent to Tailwind's `text-3xl`
-    fontWeight: '800', // equivalent to Tailwind's `font-extrabold`
+    fontSize: 24,
+    fontWeight: '800',
   },
 });

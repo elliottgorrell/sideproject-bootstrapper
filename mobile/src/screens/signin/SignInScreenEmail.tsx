@@ -4,6 +4,7 @@ import { Button, TextInput } from '@/components/ui';
 import type { StackScreenProps } from '@react-navigation/stack';
 import type { AuthStackParamList } from '@/navigation/authStack';
 import auth from '@react-native-firebase/auth';
+import { colors } from '@/theme';
 
 const SignInScreenEmail: React.FC<
   StackScreenProps<AuthStackParamList, 'SignInEmail'>
@@ -85,25 +86,25 @@ const styles = StyleSheet.create({
   formContainer: {
     flex: 2,
     justifyContent: 'flex-end',
-    gap: 12, // equivalent to Tailwind's `gap-3`
+    gap: 12,
   },
   title: {
-    fontSize: 24, // equivalent to Tailwind's `text-3xl`
-    fontWeight: '800', // equivalent to Tailwind's `font-extrabold`
+    fontSize: 24,
+    fontWeight: '800',
     alignSelf: 'center',
   },
   subtitle: {
-    fontSize: 14, // equivalent to Tailwind's `text-sm`
-    fontWeight: '800', // equivalent to Tailwind's `font-extrabold`
-    color: '#6B7280', // Tailwind's `text-gray-500`
+    fontSize: 14,
+    fontWeight: '800',
+    color: colors.gray500,
     alignSelf: 'center',
   },
   errorText: {
-    backgroundColor: '#FEE2E2', // Tailwind's `bg-red-100`
-    borderColor: '#F87171', // Tailwind's `border-red-400`
-    color: '#B91C1C', // Tailwind's `text-red-700`
-    paddingHorizontal: 16, // Tailwind's `px-4`
-    paddingVertical: 12, // Tailwind's `py-3`
+    backgroundColor: colors.red100,
+    borderColor: colors.red400,
+    color: colors.red700,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
     borderWidth: 1,
   },
   signUpContainer: {
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
   },
   signUpTextContainer: {
     flexDirection: 'row',
-    gap: 8, // equivalent to Tailwind's `gap-2`
+    gap: 8,
   },
   signUpText: {
     fontWeight: 'bold',
