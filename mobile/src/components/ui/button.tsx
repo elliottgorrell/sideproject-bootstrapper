@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { useColorScheme } from 'react-native';
 import { Icon, type IconProps } from './icon';
-import { colors, darkModeVariant } from '@/theme';
+import { colors } from '@/theme';
 
 export type ButtonVariant =
   | 'default'
@@ -49,11 +49,8 @@ export const ButtonIcon = ({ name, type, color, size }: IconProps) => {
   const variant = useContext(VariantContext);
 
   const variantColors = {
-    default: darkModeVariant(
-      deviceColorScheme,
-      colors.primary100,
-      colors.primary900
-    ),
+    default:
+      deviceColorScheme === 'dark' ? colors.primary900 : colors.primary100,
     success: colors.green50,
     destructive: colors.red50,
     warning: colors.warning100,

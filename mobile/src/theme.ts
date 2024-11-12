@@ -1,3 +1,5 @@
+import type { StyleProp } from 'react-native';
+import type { EmptyObject } from './types/misc';
 export interface ColorPalette {
   primary100: string;
   primary200: string;
@@ -334,8 +336,7 @@ type ColorSchemeName = 'light' | 'dark' | null | undefined;
  * @param darkModeValue
  * @returns
  */
-export const darkModeVariant = (
-  mode: ColorSchemeName,
-  lightModeValue: string,
-  darkModeValue: string
-): string => (mode === 'dark' ? darkModeValue : lightModeValue);
+export const darkModeVariant = <T>(
+  style: StyleProp<T>,
+  mode: ColorSchemeName
+): StyleProp<T> | EmptyObject => (mode === 'dark' ? style : {});

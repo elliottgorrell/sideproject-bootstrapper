@@ -30,23 +30,14 @@ export const TextInput = ({
       onEndEditing={handleEndEditing}
       style={[
         styles.inputStyle,
-        {
-          borderColor: darkModeVariant(
-            deviceColorScheme,
-            colors.black,
-            colors.white
-          ),
-          backgroundColor: darkModeVariant(
-            deviceColorScheme,
-            colors.primary100,
-            colors.primary900
-          ),
-          color: darkModeVariant(
-            deviceColorScheme,
-            colors.primary900,
-            colors.primary100
-          ),
-        },
+        darkModeVariant(
+          {
+            borderColor: colors.black,
+            backgroundColor: colors.primary900,
+            color: colors.primary100,
+          },
+          deviceColorScheme
+        ),
         props.style,
         isFocused && Platform.OS !== 'web'
           ? { borderColor: colors.blue500 }
@@ -65,5 +56,8 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     height: 48,
     paddingHorizontal: 16,
+    borderColor: colors.black,
+    backgroundColor: colors.primary100,
+    color: colors.primary900,
   },
 });
