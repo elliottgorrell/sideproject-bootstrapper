@@ -19,7 +19,10 @@
     - Google
       - Go to firebase console > Authentication > Sign-in Method and enable the google sign in provider
       - Go to firebase project settings and add the sha1 key for development to the android app. It can be genereated with `cd android && ./gradlew signingReport`
-    - FB: Go to firebase console > Authentication > Sign-in Method and grab the oauth url for FB. Then go to the meta developer portal and add this url to the allowlist for oauth urls (should be in setting for login usecase)
+    - FB: 
+      - Go to firebase console > Authentication > Sign-in Method and grab the oauth url for FB.  
+      Then go to the meta developer portal and add this url to the allowlist for oauth urls (should be in setting for login usecase)
+      - Add the sha1 key for the android app in meta developer portal
 16. Grab the config files for ios and android to setup the firebase react native sdk. The GoogleService-Info.plist and google-services.json files can be downloaded from the [firebase console](https://console.firebase.google.com). They will go inside the root of the `mobile` folder
 17. Add a value into `mobile/.env` `EXPO_PUBLIC_GOOGLE_WEB_ID=<>`. The value can be retrieved from `google-services.json` it will be **client_type: 3**
 18. `cd mobile && npm i && npm run clean && npm run ios`
