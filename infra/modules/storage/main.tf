@@ -1,6 +1,5 @@
-
 resource "google_storage_bucket" "default" {
-  provider                    = google-beta
+  provider                    = google
   name                        = "${var.project_id}-user-uploads"
   location                    = "US"
   project                     = var.project_id
@@ -15,7 +14,7 @@ resource "google_firebase_storage_bucket" "default" {
 
 # Creates a ruleset of Cloud Storage Security Rules from a local file.
 resource "google_firebaserules_ruleset" "default" {
-  provider = google-beta
+  provider = google
   project  = var.project_id
   source {
     files {
@@ -32,7 +31,7 @@ resource "google_firebaserules_ruleset" "default" {
 
 # Releases the ruleset to the default Storage bucket.
 resource "google_firebaserules_release" "default" {
-  provider = google-beta
+  provider = google
   # name     = "firebase.storage/${google_app_engine_application.default.default_bucket}"
   name         = "firebase.storage/${google_storage_bucket.default.name}"
   ruleset_name = "projects/${var.project_id}/rulesets/${google_firebaserules_ruleset.default.name}"

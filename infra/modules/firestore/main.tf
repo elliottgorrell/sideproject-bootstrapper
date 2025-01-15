@@ -1,8 +1,8 @@
 # Provisions the Firestore database instance.
 resource "google_firestore_database" "default" {
-  provider         = google-beta
+  provider         = google
   project          = var.project_id
-  name             = "(default)"
+  name             = "main-db"
   location_id      = "nam5"
   type             = "FIRESTORE_NATIVE"
   concurrency_mode = "OPTIMISTIC"
@@ -10,7 +10,7 @@ resource "google_firestore_database" "default" {
 
 # Creates a ruleset of Firestore Security Rules from a local file.
 resource "google_firebaserules_ruleset" "default" {
-  provider = google-beta
+  provider = google
   project  = var.project_id
   source {
     files {
@@ -26,7 +26,7 @@ resource "google_firebaserules_ruleset" "default" {
 
 # Releases the ruleset for the Firestore instance.
 resource "google_firebaserules_release" "default" {
-  provider     = google-beta
+  provider     = google
   name         = "cloud.firestore" # must be cloud.firestore
   ruleset_name = google_firebaserules_ruleset.default.name
   project      = var.project_id
