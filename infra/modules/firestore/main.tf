@@ -2,7 +2,7 @@
 resource "google_firestore_database" "default" {
   provider         = google
   project          = var.project_id
-  name             = "main-db"
+  name             = "(default)" # This must stay as (default) otherwise things like rulesets don't apply properly
   location_id      = "nam5"
   type             = "FIRESTORE_NATIVE"
   concurrency_mode = "OPTIMISTIC"
