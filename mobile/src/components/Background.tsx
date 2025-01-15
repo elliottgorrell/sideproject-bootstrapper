@@ -79,8 +79,8 @@ export const Background = ({ variant }: BackgroundProps): React.JSX.Element => (
   <View style={styles.svgContainer}>
     <Svg
       viewBox="0 0 429.88 859.76"
-      width="429.88"
-      height="859.76"
+      width="100%"
+      height="100%"
       preserveAspectRatio="none"
     >
       {renderVariant(variant)}
