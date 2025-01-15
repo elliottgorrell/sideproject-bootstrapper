@@ -8,6 +8,11 @@ variable "bundle_id" {
   nullable = false
 }
 
+variable "android_sha1_hashes" {
+  type     = list(string)
+  nullable = false
+}
+
 locals {
   secrets = { for tuple in regexall("(.*?)=(.*)", file(".env")) : tuple[0] => sensitive(tuple[1]) }
 }
@@ -105,6 +110,11 @@ resource "google_identity_platform_config" "default" {
       enabled           = true
       password_required = false
     }
+
+    phone_number {
+      enabled            = false
+      test_phone_numbers = {}
+    }
   }
 
   # Wait for identitytoolkit.googleapis.com to be enabled before initializing Authentication.
@@ -178,6 +188,7 @@ resource "google_firebase_android_app" "default" {
   display_name    = "Android App"
   package_name    = var.bundle_id
   deletion_policy = "DELETE"
+  sha1_hashes     = var.android_sha1_hashes
 
   depends_on = [google_firebase_project.default]
 }
