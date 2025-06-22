@@ -44,6 +44,7 @@ module.exports = ({ config }) => {
       android: {
         package: config.bundleIdentifier,
         googleServicesFile: "./google-services.json",
+        "edgeToEdgeEnabled": true,
       },
       plugins: [
         "@react-native-firebase/app",
